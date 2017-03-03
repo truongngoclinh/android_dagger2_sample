@@ -22,7 +22,7 @@ import samples.linhtruong.com.dagger2sample.scope.LoginScope;
 public interface LoginComponent {
 
     final class Initializer {
-        public static LoginComponent initialize(AppComponent appComponent) {
+        public static LoginComponent init(AppComponent appComponent) {
             return DaggerLoginComponent.builder().appComponent(appComponent).build();
         }
     }

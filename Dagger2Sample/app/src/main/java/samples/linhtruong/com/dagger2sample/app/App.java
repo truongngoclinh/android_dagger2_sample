@@ -24,7 +24,7 @@ public class App extends Application {
     }
 
     private void initDependency() {
-        mAppComponent = AppComponent.Initialiazer.initialize(this);
+        mAppComponent = AppComponent.Initialiazer.init(this);
     }
 
     public static AppComponent getAppcomponent() {

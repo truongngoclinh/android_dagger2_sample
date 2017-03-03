@@ -20,7 +20,7 @@ import samples.linhtruong.com.dagger2sample.scope.ApplicationScope;
 public interface AppComponent {
 
     final class Initialiazer {
-        public static AppComponent initialize(App app) {
+        public static AppComponent init(App app) {
             return DaggerAppComponent.builder().appModule(new AppModule(app)).build();
         }
     }
