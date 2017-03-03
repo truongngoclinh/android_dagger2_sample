@@ -1,4 +1,4 @@
-# Dagger 2 explanation
+# Dagger 2 explanation (MVP + Retrofit + Realm + Bolt)
 ## 1. Introduction
 Presumed that the reader got the need of dagger 2 in nowaday popular android applications.
 In this sample, I want to figure out dagger 2 usage, I will try to describe dagger things in easiest understanding way included image and snip code. In specific way, this project need to clarify:
@@ -36,6 +36,7 @@ Ofcourse:
 - We put everything to DB (`Realm`) to optimize performance. So I think its enough for depic denpendency injection by Dagger
 2.
 - We apply MVP design pattern.
+- We handle continuous http request by [`Bolt`] (https://github.com/BoltsFramework/Bolts-Android)
 
 ## 4. Project structure
 How does dagger 2 represents:  (**TBD** better with a graph to depic)
@@ -45,10 +46,10 @@ Class declaration (**TBD**)
 - `AppComponent`: a bridge 
 - `---------------`
 - `NetworkModule`: provide API client: send http request for login/logout, retrieve transaction list.
-- `NetworkComponent`: a bridge
 - `---------------`
 - `DatabaseModule`: provide database access, sharepreferences access
-- `DatabaseComponent`: a bridge
+- `---------------`
+- `LoginComponent`:
 - `---------------`
 - `@UserScope`: for user lifetime
 - `@ApplicationScope`: for entire application (singleton)
