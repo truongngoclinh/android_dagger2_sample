@@ -41,13 +41,13 @@ How does dagger 2 represents:  (**TBD** better with a graph to depic)
 Class declaration (**TBD**)
 - `AppModule`: provide 
 - `AppComponent`: a bridge 
-
+- `---------------`
 - `NetworkModule`: provide API client: send http request for login/logout, retrieft transaction list.
 - `NetworkComponent`: a bridge
-
+- `---------------`
 - `DatabaseModule`: provide database access, sharepreferences access
 - `DatabaseComponent`: a bridge
-
+- `---------------`
 - `@UserScope`: for user lifetime
 - `@ApplicationScope`: for entire application (singleton)
 - `@LoginScope`: for login circle
