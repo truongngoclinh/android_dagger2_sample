@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        applicationId "samples.linhtruong.com.dagger2sample"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.code
+        versionName versions.name
+
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dexOptions {
+        // added for instant-run optimization
+        maxProcessCount 4
+        javaMaxHeapSize "2g"
+    }
+
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/menu'] } }
+}
+
+dependencies {
+    compile project(path: ':utils')
+
+    apt libraries.androidAnnotations
+    compile libraries.androidAnnotationsApi
+
+    apt libraries.daggerCompiler
+    compile libraries.dagger
+
+    compile libraries.supportDesign
+    compile libraries.supportAppCompat
+    compile libraries.okHttp
+    compile libraries.retrofit
+    compile libraries.retrofitGsonConverter
+    compile libraries.support
+    compile libraries.picasso
+    compile libraries.bolts
+}
