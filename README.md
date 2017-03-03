@@ -33,7 +33,9 @@ In brieft description: this project provide some use-cases:
 
 Ofcourse:
 - We will check user login/logout by RESTful API (`Retrofit + Gson`), define by `user token`. We have another API for request transactions list. 
-- We put everything to DB (`Realm`) to optimize performance. So I think its enough for depic denpendency injection by Dagger 2.
+- We put everything to DB (`Realm`) to optimize performance. So I think its enough for depic denpendency injection by Dagger
+2.
+- We apply MVP design pattern.
 
 ## 4. Project structure
 How does dagger 2 represents:  (**TBD** better with a graph to depic)
