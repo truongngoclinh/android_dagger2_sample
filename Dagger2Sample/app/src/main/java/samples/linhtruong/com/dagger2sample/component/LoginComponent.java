@@ -4,6 +4,7 @@ import dagger.Component;
 import samples.linhtruong.com.dagger2sample.login.LoginActivity;
 import samples.linhtruong.com.dagger2sample.login.LoginPresenter;
 import samples.linhtruong.com.dagger2sample.module.LoginModule;
+import samples.linhtruong.com.dagger2sample.network.request.LoginRequest;
 import samples.linhtruong.com.dagger2sample.scope.LoginScope;
 
 /**
@@ -27,4 +28,7 @@ public interface LoginComponent {
     }
 
     void inject(LoginPresenter presenter);
+    void inject(LoginRequest request);
+
+    LoginRequest exposeLoginRequest();
 }

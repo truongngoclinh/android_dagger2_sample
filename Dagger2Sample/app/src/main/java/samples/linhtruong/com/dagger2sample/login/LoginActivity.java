@@ -39,6 +39,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void initDependency() {
         mLoginComponent = LoginComponent.Initializer.initialize(App.getAppcomponent());
+        mLoginComponent.inject(mLoginComponent.exposeLoginRequest());
     }
 
     @Override

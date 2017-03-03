@@ -26,5 +26,4 @@ public interface AppComponent {
     }
 
     APIService exposeAPIService();
-
 }
