@@ -42,7 +42,7 @@ Class declaration (**TBD**)
 - `AppModule`: provide 
 - `AppComponent`: a bridge 
 - `---------------`
-- `NetworkModule`: provide API client: send http request for login/logout, retrieft transaction list.
+- `NetworkModule`: provide API client: send http request for login/logout, retrieve transaction list.
 - `NetworkComponent`: a bridge
 - `---------------`
 - `DatabaseModule`: provide database access, sharepreferences access
