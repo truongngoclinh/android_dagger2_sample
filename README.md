@@ -20,7 +20,7 @@ Here are answers:
 - **`@scope`**: is just concept for **local** `singleton`, a vivid sample is: if your application manages many users, so we can declare a `singleton` which is just existing in an `@Userscope`, so everytime we login/logout all the object provided in module will be re-created. But where is the start point and end point of `@scope`, does it define by the time we create component?
 - **`@qualifier`**, **`@name`**: imagine you have 2 `Context` variables in same module, to avoid conflict (Dagger 2 cant resolve itself) we need to provide `@name` to identify them, i.e: `@name applicationContext`, `@name activityContext`.
 
-- **`@retention`**: decide when the dependency existing (imo?), i.e: `runetime`, default is ....
+- **`@retention`**: decide when the `annotation` existing policies, i.e: `runtime`, default is `class`: mean annotation avaiable in the source and class file.
 
 Sorry for the long explanations, so in real-world how does dagger 2 work?
 
