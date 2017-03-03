@@ -1,6 +1,6 @@
 # Dagger 2 explanation
 ## 1. Introduction
-Presumed that the reader got the need of dagger 2 in current android source code.
+Presumed that the reader got the need of dagger 2 in nowaday popular android applications.
 In this sample, I want to figure out dagger 2 usage, I will try to describe dagger things in easiest understanding way included image and snip code. In specific way, this project need to clarify:
 
 - what is `module`?
