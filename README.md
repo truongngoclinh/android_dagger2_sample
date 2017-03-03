@@ -1,4 +1,5 @@
 ## Dagger 2 explanation
+#### 1.
 Presumed that the reader got the need of dagger 2 in current android source code.
 In this sample, I want to figure out dagger 2 usage, I will try to describe dagger things in easiest understanding way included image and snip code. In specific way, this project need to clarify:
 
@@ -6,6 +7,7 @@ In this sample, I want to figure out dagger 2 usage, I will try to describe dagg
 - what is `component`: what is `void inject`, how to expose object, get object directly from module?
 - what is `@scope`, `@qualifier`, `@name`, `@retention`?
 
+####2. 
 Here are answers:
 - **`module`** is where we provide `object` (what we call `dependency`, something like `new Object` we usually pass through constructor parameter), normally module contains many singleton. Some how, you can see `module` as a `singleton` container.
 
@@ -22,6 +24,7 @@ Here are answers:
 
 Sorry for the long explanations, so in real-world how does dagger 2 work?
 
+#### 3.
 In brieft description: this project provide some use-cases:
 
 - User can login/logout
@@ -32,6 +35,7 @@ Ofcourse:
 - We will check user login/logout by RESTful API (`Retrofit + Gson`), define by `user token`. We have another API for request transactions list. 
 - We put everything to DB (`Realm`) to optimize performance. So I think its enough for depic denpendency injection by Dagger 2.
 
+#### 4.
 How does dagger 2 represents:  (**TBD** better with a graph to depic)
 
 Class declaration (**TBD**)
@@ -47,5 +51,7 @@ Class declaration (**TBD**)
 - @UserScope: for user lifetime
 - @ApplicationScope: for entire application (singleton)
 - @LoginScope: for login circle
+
+#### 5. Let's start!
 
 
