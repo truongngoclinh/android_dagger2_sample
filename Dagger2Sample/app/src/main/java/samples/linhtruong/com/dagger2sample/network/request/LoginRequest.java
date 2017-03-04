@@ -8,8 +8,8 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import retrofit2.Call;
-import samples.linhtruong.com.dagger2sample.base.BaseHttpRequest;
-import samples.linhtruong.com.dagger2sample.base.BaseResponse;
+import samples.linhtruong.com.base.BaseHttpRequest;
+import samples.linhtruong.com.base.BaseResponse;
 import samples.linhtruong.com.dagger2sample.network.APIConfig;
 import samples.linhtruong.com.dagger2sample.network.APIService;
 
@@ -47,10 +47,28 @@ public class LoginRequest extends BaseHttpRequest<LoginRequest.LoginResponse> {
         return APIConfig.BASE_URL + "me/login";
     }
 
+    @Override
+    public LoginResponse getMockResponse() {
+        LoginResponse mockResponse = new LoginResponse();
+        mockResponse.error = APIConfig.MOCK.ERROR_NONE;
+        mockResponse.result = APIConfig.MOCK.RESULT_OK;
+        mockResponse.accessToken = APIConfig.MOCK_LOGIN.TOKEN;
+
+        if (mData.get("account").contains("1")) {
+            mockResponse.uid = APIConfig.MOCK_USER1.UID;
+        } else {
+            mockResponse.uid = APIConfig.MOCK_USER2.UID;
+        }
+
+        return mockResponse;
+    }
+
     public class LoginResponse extends BaseResponse {
 
         @SerializedName("token")
         public String accessToken;
 
+        @SerializedName("uid")
+        public String uid;
     }
 }

@@ -15,7 +15,7 @@ public class LogUtils {
     private static final int E = 4;
 
 
-    private static final String TAG = "BaseApplicationForm";
+    private static final String TAG = "Sentry";
     private static final boolean IS_SHOW = true;
 
     private static int OTHERS = -1;

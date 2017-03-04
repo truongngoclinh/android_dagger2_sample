@@ -4,6 +4,7 @@ import dagger.Module;
 import dagger.Provides;
 import samples.linhtruong.com.dagger2sample.app.App;
 import samples.linhtruong.com.dagger2sample.scope.ApplicationScope;
+import samples.linhtruong.com.dagger2sample.storage.DbManager;
 
 /**
  * CLASS DESCRIPTION
@@ -26,6 +27,12 @@ public class AppModule {
     @Provides
     App provideApplicationContext() {
         return mApp;
+    }
+
+    @ApplicationScope
+    @Provides
+    DbManager provideDBManager() {
+        return new DbManager(mApp);
     }
 
 }

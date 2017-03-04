@@ -6,6 +6,7 @@ import samples.linhtruong.com.dagger2sample.module.AppModule;
 import samples.linhtruong.com.dagger2sample.module.NetworkModule;
 import samples.linhtruong.com.dagger2sample.network.APIService;
 import samples.linhtruong.com.dagger2sample.scope.ApplicationScope;
+import samples.linhtruong.com.dagger2sample.storage.DbManager;
 
 /**
  * CLASS DESCRIPTION
@@ -26,4 +27,5 @@ public interface AppComponent {
     }
 
     APIService exposeAPIService();
+    DbManager exposeDBManager();
 }

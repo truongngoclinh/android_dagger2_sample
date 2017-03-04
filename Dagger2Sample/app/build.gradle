@@ -12,7 +12,7 @@ android {
         versionCode versions.code
         versionName versions.name
 
-        multiDexEnabled true
+        multiDexEnabled false
     }
 
     buildTypes {
@@ -33,6 +33,7 @@ android {
 
 dependencies {
     compile project(path: ':utils')
+    compile project(path: ':base')
 
     apt libraries.androidAnnotations
     compile libraries.androidAnnotationsApi
@@ -40,12 +41,7 @@ dependencies {
     apt libraries.daggerCompiler
     compile libraries.dagger
 
-    compile libraries.supportDesign
-    compile libraries.supportAppCompat
-    compile libraries.okHttp
-    compile libraries.retrofit
-    compile libraries.retrofitGsonConverter
-    compile libraries.support
     compile libraries.picasso
     compile libraries.bolts
+    compile libraries.robotoTextView
 }

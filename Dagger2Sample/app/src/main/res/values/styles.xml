@@ -8,4 +8,32 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="home_tab_section">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="home_tab_indicator">
+        <item name="android:layout_width">8dp</item>
+        <item name="android:layout_height">8dp</item>
+        <item name="android:layout_gravity">center_horizontal|top</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+    <style name="home_tab_icon" parent="@style/AppTheme.BG_Selector_Borderless">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/tab_menu_text_color</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AppTheme.BG_Selector_Borderless">
+        <item name="android:background">@drawable/tab_bg_grey</item>
+    </style>
+
 </resources>

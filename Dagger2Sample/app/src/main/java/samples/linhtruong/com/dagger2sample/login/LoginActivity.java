@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import org.androidannotations.annotations.EActivity;
 
+import samples.linhtruong.com.base.BaseActivity;
 import samples.linhtruong.com.dagger2sample.app.App;
-import samples.linhtruong.com.dagger2sample.base.BaseActivity;
 import samples.linhtruong.com.dagger2sample.component.LoginComponent;
 import samples.linhtruong.com.dagger2sample.scope.LoginScope;
 

@@ -1,4 +1,4 @@
-package samples.linhtruong.com.dagger2sample.base;
+package samples.linhtruong.com.base;
 
 /**
  * CLASS DESCRIPTION
@@ -51,35 +51,35 @@ public abstract class BasePresenter<V extends View> {
 
     }
 
-    protected void onLoad() {
+    public void onLoad() {
 
     }
 
-    protected void onResume() {
+    public void onResume() {
 
     }
 
-    protected void onPause() {
+    public void onPause() {
 
     }
 
-    protected void onDestroy() {
+    public void onDestroy() {
 
     }
 
-    protected void onSaveInstance() {
+    public void onSaveInstance() {
 
     }
 
-    protected void onRestoreInstance() {
+    public void onRestoreInstance() {
 
     }
 
-    protected void onActivityResult(int requestCode, Intent data) {
+    public void onActivityResult(int requestCode, Intent data) {
 
     }
 
-    protected V getView() {
+    public V getView() {
         return view;
     }
 

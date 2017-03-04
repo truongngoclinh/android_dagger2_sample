@@ -1,4 +1,4 @@
-package samples.linhtruong.com.dagger2sample.base;
+package samples.linhtruong.com.base;
 
 import com.google.gson.annotations.SerializedName;
 

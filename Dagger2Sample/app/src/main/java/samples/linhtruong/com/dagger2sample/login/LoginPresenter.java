@@ -10,9 +10,11 @@ import javax.inject.Inject;
 
 import bolts.Continuation;
 import bolts.Task;
-import samples.linhtruong.com.dagger2sample.base.BasePresenter;
+import samples.linhtruong.com.base.BasePresenter;
+import samples.linhtruong.com.dagger2sample.home.HomeTabActivity_;
 import samples.linhtruong.com.dagger2sample.network.request.LoginRequest;
 import samples.linhtruong.com.dagger2sample.scope.LoginScope;
+import samples.linhtruong.com.utils.LogUtils;
 
 /**
  * CLASS DESCRIPTION
@@ -31,7 +33,8 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     private LoginActivity mActivity;
 
     @Override
-    protected void onLoad() {
+    public void onLoad() {
+        LogUtils.d("loaded LoginView");
         getView().mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,10 +51,15 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                         @Override
                         public Void then(Task<LoginRequest.LoginResponse> task) throws Exception {
                             // hide spinner
-                            if (task.isFaulted()) {
+                            if (task.getResult() == null) {
+                                LogUtils.d("continue with mock response");
                                 // show error code
+                                // but we will use mock response here
+                                LoginRequest.LoginResponse response = mLoginRequest.getMockResponse();
+                                HomeTabActivity_.intent(mActivity).uid(response.uid).access_token(response.accessToken).start();
                             } else {
-                                // get & save token, navigate to HomeActivity
+                                // never drop here because we dont have server side implementation
+                                // get & save token, navigate to HomeTabActivity
                             }
 
                             return null;
@@ -59,7 +67,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                     });
                 } else {
                     Snackbar.make(mActivity.findViewById(android.R.id.content),
-                            "Please input your info!", Snackbar.LENGTH_LONG).show();
+                            "Please input your info! try \"user1\" or \"user 2\"", Snackbar.LENGTH_LONG).show();
 
                 }
             }
@@ -71,8 +79,8 @@ public class LoginPresenter extends BasePresenter<LoginView> {
     }
 
     private boolean isInputValid() {
-        return (!TextUtils.isEmpty(getView().mEdtAccount.toString())
-                && !TextUtils.isEmpty(getView().mEdtPassword.toString()));
+        return (!TextUtils.isEmpty(getView().mEdtAccount.getText().toString())
+                && !TextUtils.isEmpty(getView().mEdtPassword.getText().toString()));
     }
 
 }

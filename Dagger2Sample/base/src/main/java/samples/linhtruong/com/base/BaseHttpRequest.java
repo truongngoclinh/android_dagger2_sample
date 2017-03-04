@@ -1,4 +1,4 @@
-package samples.linhtruong.com.dagger2sample.base;
+package samples.linhtruong.com.base;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,14 +18,15 @@ public abstract class BaseHttpRequest<R extends BaseResponse> {
     private R result = null;
 
     protected void request() {
+        LogUtils.d("request");
         call().enqueue(new Callback<R>() {
             @Override
             public void onResponse(Call<R> call, Response<R> response) {
                 if (response.isSuccessful()) {
-                    LogUtils.d("request: " + getURLRequest() + "successfully!");
+                    LogUtils.d("request: " + getURLRequest() + " successfully!");
                     result = response.body();
                 } else {
-                    LogUtils.d("request: " + getURLRequest() + "failed!");
+                    LogUtils.d("request: " + getURLRequest() + " failed!");
                     result = null;
                 }
             }
@@ -42,10 +43,16 @@ public abstract class BaseHttpRequest<R extends BaseResponse> {
         return result;
     }
 
-    protected abstract Call<R> call();
+    /**
+     * Create fake data for the request because we dont have server side implementation.
+     * It is same like creating mock request for testing purpose.
+     * */
+    public abstract R getMockResponse();
 
     /**
      * Temporarily debug purpose only
      * */
     protected abstract String getURLRequest();
+
+    protected abstract Call<R> call();
 }
