@@ -35,7 +35,7 @@ Sorry for the long explanations, so in real-world how does dagger 2 work?
 In brieft description: this project provide some use-cases:
 
 - User can login/logout
-- User can see the profile (name, age, gender)
+- User can see the profile (uid, name, age, gender)
 - User can see a report list of top-up transactions
 
 Ofcourse:
