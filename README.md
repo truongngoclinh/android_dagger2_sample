@@ -6,6 +6,8 @@ In this sample, I want to figure out dagger 2 usage, I will try to describe dagg
 - what is `module`?
 - what is `component`: what is `void inject`, how to expose object, get object directly from module?
 - what is `@scope`, `@qualifier`, `@name`, `@retention`?
+- What is `@inject` variable, method, constructor?
+- More in [`google guide`] (https://google.github.io/dagger/users-guide.html)
 
 ## 2. Explanation
 Here are answers:
@@ -21,6 +23,11 @@ Here are answers:
 - **`@qualifier`**, **`@name`**: imagine you have 2 `Context` variables in same module, to avoid conflict (Dagger 2 cant resolve itself) we need to provide `@name` to identify them, i.e: `@name applicationContext`, `@name activityContext`.
 
 - **`@retention`**: decide when the `annotation` existing policies, i.e: `runtime`, default is `class`: mean annotation avaiable in the source and class file. So why we need [`runtime retention`] (http://stackoverflow.com/questions/36331169/why-scope-annotations-have-runtime-retention-in-dagger-2), I'm actually not sure :)
+
+- **`@inject`**: to inject dependency to relevant class
+  + `variable`: i.e: `@Inject App applicationContext`, inject your dependency object.
+  + `method`: 
+  + `constructor`: indicate that Dagger should create instance of the class.
 
 Sorry for the long explanations, so in real-world how does dagger 2 work?
 
