@@ -26,8 +26,8 @@ Here are answers:
 
 - **`@inject`**: to inject dependency to relevant class
   + `variable`: i.e: `@Inject App applicationContext`, inject your dependency object.
-  + `method`: 
-  + `constructor`: indicate that Dagger should create instance of the class.
+  + `method`: it works in situation we want to pass class instance itself, the params also are provided from dependency graph. Checkout the explanation `[dagger]` (http://frogermcs.github.io/dependency-injection-with-dagger-2-the-api/)
+  + `constructor`: indicate that Dagger should create instance of the class, put it in depedency graph also, and if the constructor has params, they are provided from dependency graph. Checkout the explanation `[dagger 2]` (http://frogermcs.github.io/dependency-injection-with-dagger-2-the-api/)
 
 Sorry for the long explanations, so in real-world how does dagger 2 work?
 
