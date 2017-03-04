@@ -6,6 +6,8 @@ In this sample, I want to figure out dagger 2 usage, I will try to describe dagg
 - what is `module`?
 - what is `component`: what is `void inject`, how to expose object, get object directly from module?
 - what is `@scope`, `@qualifier`, `@name`, `@retention`?
+- What is `@inject` variable, method, constructor?
+- More in [`google guide`] (https://google.github.io/dagger/users-guide.html)
 
 ## 2. Explanation
 Here are answers:
@@ -22,13 +24,18 @@ Here are answers:
 
 - **`@retention`**: decide when the `annotation` existing policies, i.e: `runtime`, default is `class`: mean annotation avaiable in the source and class file. So why we need [`runtime retention`] (http://stackoverflow.com/questions/36331169/why-scope-annotations-have-runtime-retention-in-dagger-2), I'm actually not sure :)
 
+- **`@inject`**: to inject dependency to relevant class
+  + `variable`: i.e: `@Inject App applicationContext`, inject your dependency object.
+  + `method`: it works in situation we want to pass class instance itself, the params also are provided from dependency graph. Checkout the explanation [`dagger`] (http://frogermcs.github.io/dependency-injection-with-dagger-2-the-api/)
+  + `constructor`: indicate that Dagger should create instance of the class, put it in depedency graph also, and if the constructor has params, they are provided from dependency graph. Checkout the explanation [`dagger 2`] (http://frogermcs.github.io/dependency-injection-with-dagger-2-the-api/)
+
 Sorry for the long explanations, so in real-world how does dagger 2 work?
 
 ## 3. Project depiction
 In brieft description: this project provide some use-cases:
 
 - User can login/logout
-- User can see the profile (name, age, gender)
+- User can see the profile (uid, name, age, gender)
 - User can see a report list of top-up transactions
 
 Ofcourse:
