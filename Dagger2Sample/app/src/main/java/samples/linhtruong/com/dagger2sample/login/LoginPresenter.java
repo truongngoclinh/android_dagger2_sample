@@ -58,7 +58,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                             if (task.getResult() == null) {
                                 LogUtils.d("continue with mock response");
                                 // show error code
-                                // but we will use mock response here
+                                // but we will use mock data here
                                 LoginRequest.LoginResponse response = mLoginRequest.getMockResponse();
                                 mLoginSession.syncSession(response.uid, response.accessToken);
                                 HomeTabActivity_.intent(mActivity).start();

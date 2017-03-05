@@ -1,4 +1,4 @@
-package samples.linhtruong.com.dagger2sample.storage.schema;
+package samples.linhtruong.com.schema;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -15,6 +15,10 @@ public class User extends RealmObject {
 
     @PrimaryKey
     public int id;
+
+    public User() {
+
+    }
 
     public User(int age, String uid, String gender, String name, String avatar_url) {
         this.age = age;

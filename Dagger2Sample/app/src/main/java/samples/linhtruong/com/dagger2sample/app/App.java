@@ -2,7 +2,9 @@ package samples.linhtruong.com.dagger2sample.app;
 
 import android.app.Application;
 
+import io.realm.Realm;
 import samples.linhtruong.com.dagger2sample.component.AppComponent;
+import samples.linhtruong.com.utils.ScreenUtils;
 
 /**
  * CLASS DESCRIPTION
@@ -21,10 +23,16 @@ public class App extends Application {
         super.onCreate();
 
         initDependency();
+        initUtils();
     }
 
     private void initDependency() {
         mAppComponent = AppComponent.Initialiazer.init(this);
+    }
+
+    private void initUtils() {
+        ScreenUtils.init(this);
+        Realm.init(this);
     }
 
     public static AppComponent getAppcomponent() {

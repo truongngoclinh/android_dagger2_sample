@@ -1,7 +1,6 @@
-package samples.linhtruong.com.dagger2sample.storage.module;
+package samples.linhtruong.com.schema;
 
 import io.realm.annotations.RealmModule;
-import samples.linhtruong.com.dagger2sample.storage.schema.User;
 
 /**
  * CLASS DESCRIPTION

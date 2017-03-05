@@ -3,7 +3,8 @@ package samples.linhtruong.com.dagger2sample.storage;
 import android.content.Context;
 
 import io.realm.Realm;
-import samples.linhtruong.com.dagger2sample.storage.schema.User;
+import samples.linhtruong.com.schema.User;
+import samples.linhtruong.com.schema.UserDatabase;
 import samples.linhtruong.com.utils.LogUtils;
 
 /**
@@ -25,7 +26,8 @@ public class DbManager {
     }
 
     public UserDatabase initUserDB(String uid) {
-        mUserDatabase = new UserDatabase(mContext, uid);
+        LogUtils.d("init DB: " + uid);
+        mUserDatabase = new UserDatabase(uid);
         mRealm = mUserDatabase.getInstance();
 
         if (mRealm == null || mUserDatabase == null) {

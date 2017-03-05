@@ -1,9 +1,6 @@
-package samples.linhtruong.com.dagger2sample.storage;
-
-import android.content.Context;
+package samples.linhtruong.com.schema;
 
 import samples.linhtruong.com.base.BaseDatabase;
-import samples.linhtruong.com.dagger2sample.storage.module.UserModule;
 
 /**
  * Each user has its own database
@@ -20,9 +17,7 @@ public class UserDatabase extends BaseDatabase {
 
     private String mUid;
 
-    public UserDatabase(Context context, String uid) {
-        super(context);
-
+    public UserDatabase(String uid) {
         mUid = uid;
     }
 

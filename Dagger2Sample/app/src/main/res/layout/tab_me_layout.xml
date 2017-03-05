@@ -11,19 +11,39 @@
         android:background="@color/app_primary_color"
         android:ellipsize="end"
         android:gravity="center"
-        android:singleLine="true"
         android:text="@string/tab_me" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:padding="@dimen/_dp10">
 
-        <TextView
+        <ImageView
+            android:id="@+id/img_avatar"
+            android:layout_width="@dimen/_dp50"
+            android:layout_height="@dimen/_dp50"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_dp50"
+            android:scaleType="fitXY"
+            android:src="@drawable/tab_icon_me" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/txt_name"
+            style="@style/AppTheme.label.description"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Me tab" />
+            android:layout_height="@dimen/_dp48"
+            android:layout_below="@id/img_avatar"
+            android:text="@string/test"
+            android:textAlignment="center" />
 
-    </LinearLayout>
+        <com.devspark.robototextview.widget.RobotoButton
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_dp10"
+            android:text="Log out" />
+    </RelativeLayout>
+
 </merge>

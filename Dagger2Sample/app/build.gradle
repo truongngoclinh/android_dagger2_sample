@@ -25,7 +25,7 @@ android {
     dexOptions {
         // added for instant-run optimization
         maxProcessCount 4
-        javaMaxHeapSize "2g"
+        javaMaxHeapSize "8g"
     }
 
     sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/menu'] } }

@@ -18,7 +18,7 @@ ext.versions = [
         rxAndroid         : '1.2.0',
         retrofit          : '2.0.2',
         okHttp            : '3.2.0',
-        realm             : '1.1.1',
+        realm             : '2.3.0',
         gson              : '2.6.2',
         materialDialog    : '0.8.5.9@aar',
         robotoTextView    : '2.5.0',

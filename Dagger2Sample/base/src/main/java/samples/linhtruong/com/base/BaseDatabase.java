@@ -1,9 +1,8 @@
 package samples.linhtruong.com.base;
 
-import android.content.Context;
-
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import samples.linhtruong.com.utils.LogUtils;
 
 /**
  * CLASS DESCRIPTION
@@ -15,22 +14,19 @@ import io.realm.RealmConfiguration;
 
 public abstract class BaseDatabase {
 
-    private Context mContext;
     private RealmConfiguration mConfig;
 
-    public BaseDatabase(Context context) {
-        mContext = context;
-    }
-
     public Realm getInstance() {
-        if (mConfig != null) {
+        LogUtils.d("get realm instance");
+        if (mConfig == null) {
             synchronized (this) {
-                if (mConfig != null) {
-                    mConfig = new RealmConfiguration.Builder(mContext)
+                if (mConfig == null) {
+                    mConfig = new RealmConfiguration.Builder()
                             .name(getName())
                             .schemaVersion(getSchemaVersion())
                             .modules(getModule())
                             .build();
+                    LogUtils.d("config created with: " + getName());
                 }
             }
         }

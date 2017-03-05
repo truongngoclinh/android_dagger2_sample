@@ -96,32 +96,27 @@ public class HomeTabView extends BaseTabView implements IScreenView {
                 break;
         }
 
-        if (from != null) {
-            from.onPause();
-            removeView(from.getView());
-        }
-
         switch (currentIndex) {
             case 0:
                 if (mMePresenter == null) {
                     mMePresenter = new HomeMePresenter((HomeTabActivity) mContext);
                     mMeView = HomeMeView_.build(mContext);
-                    mUserComponent.inject(mMePresenter);
                 }
                 to = mMePresenter;
-                mMePresenter.takeView(mMeView);
+                mUserComponent.inject(mMePresenter);
                 addView(mMeView, layoutParams);
+                mMePresenter.takeView(mMeView);
                 break;
 
             case 1:
                 if (mReportPresenter == null) {
                     mReportPresenter = new HomeReportPresenter((HomeTabActivity) mContext);
                     mReportView = HomeReportView_.build(mContext);
-                    mUserComponent.inject(mReportPresenter);
                 }
                 to = mReportPresenter;
-                mReportPresenter.takeView(mReportView);
+                mUserComponent.inject(mReportPresenter);
                 addView(mReportView, layoutParams);
+                mReportPresenter.takeView(mReportView);
                 break;
         }
 
@@ -131,6 +126,10 @@ public class HomeTabView extends BaseTabView implements IScreenView {
             to.onResume();
         }
 
+        if (from != null) {
+            from.onPause();
+            removeView(from.getView());
+        }
     }
 
     @Override

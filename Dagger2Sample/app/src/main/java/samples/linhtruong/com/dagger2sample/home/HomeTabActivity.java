@@ -46,6 +46,7 @@ public class HomeTabActivity extends BaseActivity {
         mUserComponent = UserComponent.Initializer.init(App.getAppcomponent(), this);
         mUserComponent.inject(this);
         mUserComponent.inject(mUserComponent.exposeUserInfoRequest());
+        mUserComponent.inject(mUserComponent.exposeUserTransactionListRequest());
 
         LogUtils.d("uid = " + mLoginSession.getUid() + " - token: " + mLoginSession.getToken());
     }

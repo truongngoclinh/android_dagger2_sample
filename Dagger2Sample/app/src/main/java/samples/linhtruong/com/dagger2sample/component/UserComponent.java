@@ -21,7 +21,7 @@ import samples.linhtruong.com.dagger2sample.scope.UserScope;
 
 @UserScope
 @Component(
-        modules = {UserModule.class},
+        modules = UserModule.class,
         dependencies = {AppComponent.class}
 )
 public interface UserComponent {
@@ -36,6 +36,7 @@ public interface UserComponent {
     void inject(HomeMePresenter presenter);
     void inject(HomeReportPresenter presenter);
     void inject(UserInfoRequest request);
+    void inject(UserTransactionListRequest request);
 
     UserInfoRequest exposeUserInfoRequest();
     UserTransactionListRequest exposeUserTransactionListRequest();

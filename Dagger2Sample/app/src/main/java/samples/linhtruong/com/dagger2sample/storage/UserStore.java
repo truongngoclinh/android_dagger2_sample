@@ -3,7 +3,8 @@ package samples.linhtruong.com.dagger2sample.storage;
 import android.content.Context;
 
 import samples.linhtruong.com.base.BaseSharePreference;
-import samples.linhtruong.com.dagger2sample.storage.schema.User;
+import samples.linhtruong.com.schema.User;
+import samples.linhtruong.com.utils.LogUtils;
 
 /**
  * CLASS DESCRIPTION
@@ -33,6 +34,7 @@ public class UserStore extends BaseSharePreference {
     }
 
     public void syncUserInfo(User user) {
+        LogUtils.d("syncing uid: " + user.uid);
         putString(KEY_UID, user.uid);
         putString(KEY_GENDER, user.gender);
         putString(KEY_NAME, user.name);

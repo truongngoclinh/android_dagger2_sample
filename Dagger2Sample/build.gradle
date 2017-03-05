@@ -13,7 +13,7 @@ buildscript {
         // Add this line
         classpath 'com.google.gms:google-services:3.0.0'
 
-        // realm
+        // Realm
         classpath libraries.realm
 
         // NOTE: Do not place your application dependencies here; they belong

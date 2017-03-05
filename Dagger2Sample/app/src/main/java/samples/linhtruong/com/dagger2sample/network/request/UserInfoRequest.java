@@ -75,18 +75,18 @@ public class UserInfoRequest extends BaseHttpRequest<UserInfoRequest.UserInfoRes
     public class UserInfoResponse extends BaseResponse {
 
         @SerializedName("uid")
-        String uid;
+        public String uid;
 
         @SerializedName("name")
-        String name;
+        public String name;
 
         @SerializedName("age")
-        int age;
+        public int age;
 
         @SerializedName("gender")
-        String gender;
+        public String gender;
 
         @SerializedName("avatar_url")
-        String avatar_url;
+        public String avatar_url;
     }
 }
