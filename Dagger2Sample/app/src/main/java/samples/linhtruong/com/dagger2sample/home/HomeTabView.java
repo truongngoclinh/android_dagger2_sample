@@ -77,7 +77,6 @@ public class HomeTabView extends BaseTabView implements IScreenView {
         if (mCurrenIndex == currentIndex) {
             return;
         }
-
         for (int i = 0; i < mTabs.size(); i++) {
             mTabs.get(i).setSelected(i == currentIndex);
         }
@@ -107,10 +106,10 @@ public class HomeTabView extends BaseTabView implements IScreenView {
                 if (mMePresenter == null) {
                     mMePresenter = new HomeMePresenter((HomeTabActivity) mContext);
                     mMeView = HomeMeView_.build(mContext);
+                    mUserComponent.inject(mMePresenter);
                 }
                 to = mMePresenter;
                 mMePresenter.takeView(mMeView);
-                mUserComponent.inject(mMePresenter);
                 addView(mMeView, layoutParams);
                 break;
 
@@ -118,10 +117,10 @@ public class HomeTabView extends BaseTabView implements IScreenView {
                 if (mReportPresenter == null) {
                     mReportPresenter = new HomeReportPresenter((HomeTabActivity) mContext);
                     mReportView = HomeReportView_.build(mContext);
+                    mUserComponent.inject(mReportPresenter);
                 }
                 to = mReportPresenter;
                 mReportPresenter.takeView(mReportView);
-                mUserComponent.inject(mReportPresenter);
                 addView(mReportView, layoutParams);
                 break;
         }
