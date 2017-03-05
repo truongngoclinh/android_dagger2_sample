@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import samples.linhtruong.com.base.BasePresenter;
+
 /**
  * CLASS DESCRIPTION
  *

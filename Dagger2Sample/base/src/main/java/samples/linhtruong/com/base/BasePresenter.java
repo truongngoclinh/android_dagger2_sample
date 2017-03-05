@@ -9,6 +9,7 @@ package samples.linhtruong.com.base;
  */
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 
 import samples.linhtruong.com.utils.LogUtils;
@@ -67,11 +68,11 @@ public abstract class BasePresenter<V extends View> {
 
     }
 
-    public void onSaveInstance() {
+    public void onSaveInstance(Bundle state) {
 
     }
 
-    public void onRestoreInstance() {
+    public void onRestoreInstance(Bundle state) {
 
     }
 

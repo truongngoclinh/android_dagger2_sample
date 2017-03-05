@@ -32,8 +32,17 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="AppTheme.BG_Selector_Borderless">
-        <item name="android:background">@drawable/tab_bg_grey</item>
+    <style name="RobotoL18">
+        <item name="android:textSize">18sp</item>
+        <item name="typeface">roboto_light</item>
     </style>
 
+    <style name="AppTheme.BG_Selector_Borderless">
+        <item name="android:background">@drawable/bg_grey</item>
+    </style>
+
+    <style name="AppTheme.label.actionbar.title" parent="RobotoL18">
+        <item name="typeface">roboto_regular</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

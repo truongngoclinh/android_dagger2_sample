@@ -1,4 +1,4 @@
-package samples.linhtruong.com.base.interactor;
+package samples.linhtruong.com.interactor;
 
 /**
  * CLASS DESCRIPTION
@@ -8,7 +8,7 @@ package samples.linhtruong.com.base.interactor;
  * @organization VED
  */
 
-public interface IViewStatus {
+public interface IScreenView {
 
     void onShowView();
     void onHideView();

@@ -7,4 +7,9 @@
     <color name="light_blue">#488cf1</color>
     <color name="gray_text">#aaafb0</color>
     <color name="grey_bg_pressed">#33999999</color>
+    <color name="white">#ffffff</color>
+    <color name="app_primary_color">#2A3254</color>
+    <color name="black_main">#404040</color>
+    <color name="divider_common">#dce2e5</color>
+    <color name="transparent">#00000000</color>
 </resources>

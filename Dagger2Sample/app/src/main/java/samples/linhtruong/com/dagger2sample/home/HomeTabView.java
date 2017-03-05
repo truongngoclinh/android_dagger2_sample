@@ -12,9 +12,13 @@ import org.androidannotations.annotations.ViewsById;
 
 import java.util.List;
 
+import javax.inject.Scope;
+
 import samples.linhtruong.com.base.BaseTabView;
 import samples.linhtruong.com.base.BasePresenter;
-import samples.linhtruong.com.base.interactor.IViewStatus;
+import samples.linhtruong.com.dagger2sample.component.UserComponent;
+import samples.linhtruong.com.dagger2sample.scope.UserScope;
+import samples.linhtruong.com.interactor.IScreenView;
 import samples.linhtruong.com.dagger2sample.R;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeMePresenter;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeMeView;
@@ -32,18 +36,22 @@ import samples.linhtruong.com.dagger2sample.home.tabs.HomeReportView_;
  */
 
 @EViewGroup(R.layout.activity_home)
-public class HomeTabView extends BaseTabView implements IViewStatus {
+public class HomeTabView extends BaseTabView implements IScreenView {
 
     private Context mContext;
 
-    public HomeTabView(Context context) {
+    @UserScope
+    private UserComponent mUserComponent;
+
+    public HomeTabView(Context context, UserComponent userComponent) {
         super(context);
 
         mContext = context;
+        mUserComponent = userComponent;
     }
 
     private int mCurrenIndex = -1;
-    private final int ME_INDEX = 0, REPORT_INDEX = 1;
+    public static final int ME_INDEX = 0, REPORT_INDEX = 1;
 
     private HomeMeView mMeView;
     private HomeReportView mReportView;
@@ -102,6 +110,7 @@ public class HomeTabView extends BaseTabView implements IViewStatus {
                 }
                 to = mMePresenter;
                 mMePresenter.takeView(mMeView);
+                mUserComponent.inject(mMePresenter);
                 addView(mMeView, layoutParams);
                 break;
 
@@ -112,6 +121,7 @@ public class HomeTabView extends BaseTabView implements IViewStatus {
                 }
                 to = mReportPresenter;
                 mReportPresenter.takeView(mReportView);
+                mUserComponent.inject(mReportPresenter);
                 addView(mReportView, layoutParams);
                 break;
         }
@@ -152,19 +162,35 @@ public class HomeTabView extends BaseTabView implements IViewStatus {
         }
     }
 
-    private void setSelectedTab(int tabIndex, Bundle data) {
+    public void setSelectedTab(int tabIndex, Bundle data) {
         mTabs.get(tabIndex).setSelected(true);
         resetView(tabIndex, data);
     }
 
     @Override
     public void onShowView() {
+        View view = getCurrentView();
+        if (view instanceof IScreenView) {
+            ((IScreenView) view).onShowView();
+        }
 
+        BasePresenter presenter = getCurrentPresenter();
+        if (presenter != null) {
+            presenter.onResume();
+        }
     }
 
     @Override
     public void onHideView() {
+        View view = getCurrentView();
+        if (view instanceof IScreenView) {
+            ((IScreenView) view).onHideView();
+        }
 
+        BasePresenter presenter = getCurrentPresenter();
+        if (presenter != null) {
+            presenter.onPause();
+        }
     }
 
     @Override

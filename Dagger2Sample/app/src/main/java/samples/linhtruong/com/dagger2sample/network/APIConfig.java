@@ -24,13 +24,17 @@ public class APIConfig {
 
     public interface MOCK_USER1 {
         String UID = "111111";
+        String NAME = "Jhin";
         int AGE = 20;
-        String gender = "male";
+        String GENDER = "male";
+        String AVATAR_URL = "https://lh3.googleusercontent.com/-M8Lb7zQykwI/AAAAAAAAAAI/AAAAAAAANwI/KgUVVosJB3E/s120-p-rw-no/photo.jpg";
     }
 
     public interface MOCK_USER2 {
         String UID = "222222";
+        String NAME = "Lux";
         int AGE = 22;
-        String gender = "female";
+        String GENDER = "female";
+        String AVATAR_URL = "https://lh3.googleusercontent.com/-M8Lb7zQykwI/AAAAAAAAAAI/AAAAAAAANwI/KgUVVosJB3E/s120-p-rw-no/photo.jpg";
     }
 }

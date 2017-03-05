@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.devspark.robototextview.widget.RobotoTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/myactionbar_item_text"
+    android:layout_centerVertical="true"
+    android:singleLine="true"
+    android:visibility="visible"
+    android:gravity="center"
+    android:textSize="18sp"
+    android:textColor="@color/white"
+    app:typeface="roboto_regular"
+    android:layout_height="48dp"
+    android:layout_width="wrap_content"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:minWidth="48dp"
+    style="@style/AppTheme.BG_Selector_Borderless"/>

@@ -27,6 +27,7 @@ public interface LoginComponent {
         }
     }
 
+    void inject(LoginActivity activity);
     void inject(LoginPresenter presenter);
     void inject(LoginRequest request);
 

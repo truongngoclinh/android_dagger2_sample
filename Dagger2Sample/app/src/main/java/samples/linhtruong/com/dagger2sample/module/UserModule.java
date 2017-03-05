@@ -5,7 +5,8 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import samples.linhtruong.com.dagger2sample.scope.UserScope;
-import samples.linhtruong.com.dagger2sample.storage.UserSession;
+import samples.linhtruong.com.dagger2sample.storage.LoginSession;
+import samples.linhtruong.com.dagger2sample.storage.UserStore;
 
 /**
  * CLASS DESCRIPTION
@@ -19,16 +20,16 @@ import samples.linhtruong.com.dagger2sample.storage.UserSession;
 public class UserModule {
 
     private final Context mContext;
-    private final String mUid;
 
-    public UserModule(Context context, String uid) {
+    public UserModule(Context context) {
         mContext = context;
-        mUid = uid;
     }
 
     @UserScope
     @Provides
-    UserSession provideUserStore() {
-        return new UserSession(mContext, mUid);
+    UserStore provideUserStore() {
+        return new UserStore(mContext);
     }
+
+
 }

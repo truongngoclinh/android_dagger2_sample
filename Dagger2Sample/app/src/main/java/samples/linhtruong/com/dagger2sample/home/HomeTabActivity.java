@@ -1,17 +1,19 @@
 package samples.linhtruong.com.dagger2sample.home;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.FragmentActivity;
+import android.view.View;
 
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 
+import javax.inject.Inject;
+
+import samples.linhtruong.com.base.BaseActivity;
+import samples.linhtruong.com.base.BasePresenter;
 import samples.linhtruong.com.dagger2sample.app.App;
 import samples.linhtruong.com.dagger2sample.scope.UserScope;
 import samples.linhtruong.com.dagger2sample.component.UserComponent;
+import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 import samples.linhtruong.com.utils.LogUtils;
 
 /**
@@ -20,36 +22,40 @@ import samples.linhtruong.com.utils.LogUtils;
  */
 
 @EActivity
-public class HomeTabActivity extends FragmentActivity {
+public class HomeTabActivity extends BaseActivity {
 
     @UserScope
     UserComponent mUserComponent;
 
-    @Extra
-    String access_token;
-
-    @Extra
-    String uid;
+    @Inject
+    LoginSession mLoginSession;
 
     private HomeTabPresenter mPresenter;
     private HomeTabView mView;
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initDenpdency();
-
-        mView = HomeTabView_.build(this);
+    protected void onCreateUI(Bundle bundle) {
+        mView = HomeTabView_.build(this, mUserComponent);
         setContentView(mView);
         mPresenter = new HomeTabPresenter(this);
         mPresenter.takeView(mView);
-        mUserComponent.inject(mPresenter);
     }
 
-    private void initDenpdency() {
-        LogUtils.d("uid = " + uid + " - token: " + access_token);
-        mUserComponent = UserComponent.Initializer.init(App.getAppcomponent(), this, uid);
+    @Override
+    protected void initDependency() {
+        LogUtils.d("uid = " + mLoginSession.getUid() + " - token: " + mLoginSession.getToken());
+        mUserComponent = UserComponent.Initializer.init(App.getAppcomponent(), this);
+        mUserComponent.inject(mUserComponent.exposeUserInfoRequest());
+    }
+
+    @Override
+    protected BasePresenter<? extends View> presenter() {
+        return mPresenter;
+    }
+
+    @Override
+    protected boolean isValid() {
+        return true;
     }
 
     @Override

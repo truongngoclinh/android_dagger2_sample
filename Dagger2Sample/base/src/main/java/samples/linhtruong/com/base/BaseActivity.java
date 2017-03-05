@@ -2,6 +2,11 @@ package samples.linhtruong.com.base;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+
+import java.lang.ref.WeakReference;
+
+import samples.linhtruong.com.interactor.IScreenView;
 
 /**
  * CLASS DESCRIPTION
@@ -12,6 +17,9 @@ import android.os.Bundle;
  */
 
 public abstract class BaseActivity extends Activity {
+
+    private WeakReference<IScreenView> mContentView;
+    private boolean mIsActivityVisible;
 
     protected abstract void onCreateUI(Bundle bundle);
 
@@ -25,4 +33,87 @@ public abstract class BaseActivity extends Activity {
         onCreateUI(savedInstanceState);
     }
 
+    public void onBack() {
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        onBack();
+    }
+
+    @Override
+    protected void onPause() {
+        if (mContentView != null && isValid()) {
+            IScreenView evt = mContentView.get();
+            if (evt != null) {
+                evt.onHideView();
+            }
+        }
+
+        if (presenter() != null) {
+            presenter().onPause();
+        }
+
+        super.onPause();
+
+        mIsActivityVisible = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mContentView != null && isValid()) {
+            IScreenView evt = mContentView.get();
+            if (evt != null) {
+                evt.onShowView();
+            }
+        }
+
+        if (presenter() != null) {
+            presenter().onResume();
+        }
+
+        mIsActivityVisible = true;
+    }
+
+    public boolean isActivityVisible() {
+        return mIsActivityVisible;
+    }
+
+    /**
+     * mark the activity state
+     *
+     * @return true if the activity instance is still functional
+     */
+    protected abstract boolean isValid();
+
+    /**
+     * Override this to initialize the base view presenter
+     *
+     * @return {@link BasePresenter}
+     */
+    protected BasePresenter<? extends View> presenter() {
+        return null;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (presenter() != null) {
+            presenter().onSaveInstance(outState);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mContentView != null) {
+            IScreenView evt = mContentView.get();
+            if (evt != null) {
+                evt.onDestroy();
+            }
+            mContentView = null;
+        }
+        super.onDestroy();
+    }
 }

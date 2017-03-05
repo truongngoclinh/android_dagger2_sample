@@ -1,13 +1,20 @@
 package samples.linhtruong.com.dagger2sample.login;
 
 import android.os.Bundle;
+import android.view.View;
 
 import org.androidannotations.annotations.EActivity;
 
+import javax.inject.Inject;
+
 import samples.linhtruong.com.base.BaseActivity;
+import samples.linhtruong.com.base.BasePresenter;
 import samples.linhtruong.com.dagger2sample.app.App;
 import samples.linhtruong.com.dagger2sample.component.LoginComponent;
+import samples.linhtruong.com.dagger2sample.component.UserComponent;
 import samples.linhtruong.com.dagger2sample.scope.LoginScope;
+import samples.linhtruong.com.dagger2sample.scope.UserScope;
+import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 
 /**
  * CLASS DESCRIPTION
@@ -40,6 +47,17 @@ public class LoginActivity extends BaseActivity {
     public void initDependency() {
         mLoginComponent = LoginComponent.Initializer.init(App.getAppcomponent());
         mLoginComponent.inject(mLoginComponent.exposeLoginRequest());
+
+    }
+
+    @Override
+    protected boolean isValid() {
+        return true;
+    }
+
+    @Override
+    protected BasePresenter<? extends View> presenter() {
+        return mPresenter;
     }
 
     @Override

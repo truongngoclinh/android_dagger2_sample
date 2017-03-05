@@ -1,4 +1,4 @@
-package samples.linhtruong.com.dagger2sample.storage;
+package samples.linhtruong.com.base;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,20 +7,19 @@ import android.content.SharedPreferences;
  * CLASS DESCRIPTION
  *
  * @author linhtruong
- * @date 3/4/17 - 23:54.
+ * @date 3/5/17 - 13:32.
  * @organization VED
  */
 
-public class UserSession {
+public abstract class BaseSharePreference {
 
-    public static final String KEY_USER_ACCESS_TOKEN = "access_token";
-    public static final String KEY_USER_LOGIN_STATUS = "login_status";
+    protected SharedPreferences mSharePreferences;
 
-    private SharedPreferences mSharePreferences;
-
-    public UserSession(Context context, String uid) {
-        mSharePreferences = context.getSharedPreferences(uid, Context.MODE_PRIVATE);
+    public BaseSharePreference(Context context) {
+        mSharePreferences = context.getSharedPreferences(getPrefKey(), Context.MODE_PRIVATE);
     }
+
+    protected abstract String getPrefKey();
 
     public boolean putString(String key, String value) {
         if (mSharePreferences == null) return false;

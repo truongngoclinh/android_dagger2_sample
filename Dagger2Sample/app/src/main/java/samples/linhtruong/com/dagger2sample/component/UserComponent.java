@@ -4,8 +4,11 @@ import android.content.Context;
 
 import dagger.Component;
 import samples.linhtruong.com.dagger2sample.home.HomeTabActivity;
-import samples.linhtruong.com.dagger2sample.home.HomeTabPresenter;
+import samples.linhtruong.com.dagger2sample.home.tabs.HomeMePresenter;
+import samples.linhtruong.com.dagger2sample.home.tabs.HomeReportPresenter;
 import samples.linhtruong.com.dagger2sample.module.UserModule;
+import samples.linhtruong.com.dagger2sample.network.request.UserInfoRequest;
+import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListRequest;
 import samples.linhtruong.com.dagger2sample.scope.UserScope;
 
 /**
@@ -24,11 +27,16 @@ import samples.linhtruong.com.dagger2sample.scope.UserScope;
 public interface UserComponent {
 
     final class Initializer {
-        public static UserComponent init(AppComponent appComponent, Context context, String uid) {
-            return DaggerUserComponent.builder().appComponent(appComponent).userModule(new UserModule(context, uid)).build();
+        public static UserComponent init(AppComponent appComponent, Context context) {
+            return DaggerUserComponent.builder().appComponent(appComponent).userModule(new UserModule(context)).build();
         }
     }
 
     void inject(HomeTabActivity activity);
-    void inject(HomeTabPresenter presenter);
+    void inject(HomeMePresenter presenter);
+    void inject(HomeReportPresenter presenter);
+    void inject(UserInfoRequest request);
+
+    UserInfoRequest exposeUserInfoRequest();
+    UserTransactionListRequest exposeUserTransactionListRequest();
 }
