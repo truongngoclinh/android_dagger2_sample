@@ -40,7 +40,7 @@ public class DbManager {
     public void updateUserInfo(User user) {
         LogUtils.d("update user: " + user.uid);
         mRealm.beginTransaction();
-        mRealm.copyFromRealm(user);
+        mRealm.copyToRealmOrUpdate(user);
         mRealm.commitTransaction();
     }
 

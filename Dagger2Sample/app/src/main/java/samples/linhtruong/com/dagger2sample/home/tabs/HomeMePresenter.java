@@ -57,7 +57,7 @@ public class HomeMePresenter extends BasePresenter<HomeMeView> {
                 // user mock data
                 if (task.getResult() == null) {
                     LogUtils.d("continue with mock response, update db");
-                    UserInfoRequest.UserInfoResponse response = task.getResult();
+                    UserInfoRequest.UserInfoResponse response = mUserInfoRequest.getMockResponse();
                     user = new User(response.age, response.uid, response.gender, response.name, response.avatar_url);
 
                     // sync sharepreferences
