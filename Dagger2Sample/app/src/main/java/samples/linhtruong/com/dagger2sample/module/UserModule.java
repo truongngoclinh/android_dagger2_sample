@@ -4,6 +4,8 @@ import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
+import samples.linhtruong.com.dagger2sample.network.request.UserInfoRequest;
+import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListRequest;
 import samples.linhtruong.com.dagger2sample.scope.UserScope;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 import samples.linhtruong.com.dagger2sample.storage.UserStore;
@@ -29,5 +31,17 @@ public class UserModule {
     @Provides
     UserStore provideUserStore() {
         return new UserStore(mContext);
+    }
+
+    @UserScope
+    @Provides
+    UserInfoRequest provideUserRequest() {
+        return new UserInfoRequest();
+    }
+
+    @UserScope
+    @Provides
+    UserTransactionListRequest provideTransactionListRequest() {
+        return new UserTransactionListRequest();
     }
 }

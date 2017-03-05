@@ -3,6 +3,7 @@ package samples.linhtruong.com.dagger2sample.storage;
 import android.content.Context;
 
 import samples.linhtruong.com.base.BaseDatabase;
+import samples.linhtruong.com.dagger2sample.storage.module.UserModule;
 
 /**
  * Each user has its own database

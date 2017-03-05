@@ -1,4 +1,4 @@
-package samples.linhtruong.com.dagger2sample.storage;
+package samples.linhtruong.com.dagger2sample.storage.module;
 
 import io.realm.annotations.RealmModule;
 import samples.linhtruong.com.dagger2sample.storage.schema.User;
