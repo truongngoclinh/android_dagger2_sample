@@ -45,9 +45,9 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onPause() {
         if (mContentView != null && isValid()) {
-            IScreenView evt = mContentView.get();
-            if (evt != null) {
-                evt.onHideView();
+            IScreenView screenView = mContentView.get();
+            if (screenView != null) {
+                screenView.onHideView();
             }
         }
 
@@ -64,9 +64,9 @@ public abstract class BaseActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if (mContentView != null && isValid()) {
-            IScreenView evt = mContentView.get();
-            if (evt != null) {
-                evt.onShowView();
+            IScreenView screenView = mContentView.get();
+            if (screenView != null) {
+                screenView.onShowView();
             }
         }
 
@@ -108,9 +108,9 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onDestroy() {
         if (mContentView != null) {
-            IScreenView evt = mContentView.get();
-            if (evt != null) {
-                evt.onDestroy();
+            IScreenView screenView = mContentView.get();
+            if (screenView != null) {
+                screenView.onDestroy();
             }
             mContentView = null;
         }

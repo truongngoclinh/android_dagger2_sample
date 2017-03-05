@@ -17,4 +17,9 @@ public class HomeTabPresenter  extends BasePresenter<HomeTabView> {
     public HomeTabPresenter(HomeTabActivity activity) {
        mActivity = activity;
     }
+
+    @Override
+    public void onLoad() {
+        getView().setSelectedTab(HomeTabView.ME_INDEX, null);
+    }
 }

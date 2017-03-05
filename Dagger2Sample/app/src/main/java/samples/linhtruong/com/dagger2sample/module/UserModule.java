@@ -30,6 +30,4 @@ public class UserModule {
     UserStore provideUserStore() {
         return new UserStore(mContext);
     }
-
-
 }
