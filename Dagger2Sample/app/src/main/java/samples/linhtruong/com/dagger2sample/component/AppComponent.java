@@ -2,6 +2,7 @@ package samples.linhtruong.com.dagger2sample.component;
 
 import dagger.Component;
 import samples.linhtruong.com.dagger2sample.app.App;
+import samples.linhtruong.com.dagger2sample.login.SplashActivity;
 import samples.linhtruong.com.dagger2sample.module.AppModule;
 import samples.linhtruong.com.dagger2sample.module.NetworkModule;
 import samples.linhtruong.com.dagger2sample.network.APIService;
@@ -26,6 +27,8 @@ public interface AppComponent {
             return DaggerAppComponent.builder().appModule(new AppModule(app)).build();
         }
     }
+
+    void inject(SplashActivity activity);
 
     APIService exposeAPIService();
     DbManager exposeDBManager();

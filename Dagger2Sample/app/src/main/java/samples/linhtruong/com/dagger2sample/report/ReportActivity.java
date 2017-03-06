@@ -2,8 +2,8 @@ package samples.linhtruong.com.dagger2sample.report;
 
 import android.os.Bundle;
 
-import samples.linhtruong.com.dagger2sample.ui.ActionBar;
-import samples.linhtruong.com.dagger2sample.ui.BaseActionActivity;
+import samples.linhtruong.com.dagger2sample.utils.ActionBar;
+import samples.linhtruong.com.dagger2sample.utils.base.BaseActionActivity;
 
 /**
  * CLASS DESCRIPTION

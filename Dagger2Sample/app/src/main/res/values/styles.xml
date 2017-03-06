@@ -32,6 +32,11 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="RobotoB18">
+        <item name="android:textSize">18sp</item>
+        <item name="typeface">roboto_condensed_bold</item>
+    </style>
+
     <style name="RobotoL18">
         <item name="android:textSize">18sp</item>
         <item name="typeface">roboto_light</item>

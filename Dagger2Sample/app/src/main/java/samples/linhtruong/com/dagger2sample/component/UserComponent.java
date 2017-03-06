@@ -7,6 +7,7 @@ import samples.linhtruong.com.dagger2sample.home.HomeTabActivity;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeMePresenter;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeReportPresenter;
 import samples.linhtruong.com.dagger2sample.module.UserModule;
+import samples.linhtruong.com.dagger2sample.network.request.LogoutRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserInfoRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListRequest;
 import samples.linhtruong.com.dagger2sample.scope.UserScope;
@@ -37,7 +38,9 @@ public interface UserComponent {
     void inject(HomeReportPresenter presenter);
     void inject(UserInfoRequest request);
     void inject(UserTransactionListRequest request);
+    void inject(LogoutRequest request);
 
     UserInfoRequest exposeUserInfoRequest();
     UserTransactionListRequest exposeUserTransactionListRequest();
+    LogoutRequest exposeLogoutRequest();
 }

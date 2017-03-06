@@ -38,8 +38,12 @@ public abstract class BaseActivity extends Activity {
     }
 
     @Override
-    public void onBackPressed() {
-        onBack();
+    public void setContentView(View view) {
+        if (view instanceof IScreenView) {
+            IScreenView evt = (IScreenView) view;
+            mContentView = new WeakReference<>(evt);
+        }
+        super.setContentView(view);
     }
 
     @Override
@@ -114,6 +118,7 @@ public abstract class BaseActivity extends Activity {
             }
             mContentView = null;
         }
+
         super.onDestroy();
     }
 }

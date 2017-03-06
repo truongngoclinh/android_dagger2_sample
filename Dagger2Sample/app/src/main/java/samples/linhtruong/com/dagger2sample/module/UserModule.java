@@ -4,6 +4,7 @@ import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
+import samples.linhtruong.com.dagger2sample.network.request.LogoutRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserInfoRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListRequest;
 import samples.linhtruong.com.dagger2sample.scope.UserScope;
@@ -43,5 +44,11 @@ public class UserModule {
     @Provides
     UserTransactionListRequest provideTransactionListRequest() {
         return new UserTransactionListRequest();
+    }
+
+    @UserScope
+    @Provides
+    LogoutRequest provideLogoutRequest() {
+        return new LogoutRequest();
     }
 }

@@ -1,5 +1,6 @@
 package samples.linhtruong.com.dagger2sample.login;
 
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,10 +12,12 @@ import javax.inject.Inject;
 import bolts.Continuation;
 import bolts.Task;
 import samples.linhtruong.com.base.BasePresenter;
+import samples.linhtruong.com.dagger2sample.R;
 import samples.linhtruong.com.dagger2sample.home.HomeTabActivity_;
 import samples.linhtruong.com.dagger2sample.network.request.LoginRequest;
 import samples.linhtruong.com.dagger2sample.scope.LoginScope;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
+import samples.linhtruong.com.dagger2sample.utils.Navigator;
 import samples.linhtruong.com.utils.LogUtils;
 
 /**
@@ -61,7 +64,8 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                                 // but we will use mock data here
                                 LoginRequest.LoginResponse response = mLoginRequest.getMockResponse();
                                 mLoginSession.syncSession(response.uid, response.accessToken);
-                                HomeTabActivity_.intent(mActivity).start();
+
+                                Navigator.navigateHomeActivity(mActivity);
                             } else {
                                 // never drop here because we dont have server side implementation
                                 // get & save token, navigate to HomeTabActivity
@@ -77,14 +81,6 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                 }
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        if (mLoginSession.isLogged()) {
-            // user already logged, navigate directly to HomeTabActivity
-            HomeTabActivity_.intent(mActivity).start();
-        }
     }
 
     public LoginPresenter(LoginActivity activity) {

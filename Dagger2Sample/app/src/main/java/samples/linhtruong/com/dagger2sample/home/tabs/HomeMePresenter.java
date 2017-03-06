@@ -1,5 +1,7 @@
 package samples.linhtruong.com.dagger2sample.home.tabs;
 
+import android.view.View;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.Callable;
@@ -11,6 +13,7 @@ import bolts.Task;
 import samples.linhtruong.com.base.BasePresenter;
 import samples.linhtruong.com.dagger2sample.home.HomeTabActivity;
 import samples.linhtruong.com.dagger2sample.home.utils.CircleTransform;
+import samples.linhtruong.com.dagger2sample.network.request.LogoutRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserInfoRequest;
 import samples.linhtruong.com.dagger2sample.storage.DbManager;
 import samples.linhtruong.com.dagger2sample.storage.UserStore;
@@ -29,6 +32,9 @@ public class HomeMePresenter extends BasePresenter<HomeMeView> {
 
     @Inject
     UserInfoRequest mUserInfoRequest;
+
+    @Inject
+    LogoutRequest mLogoutRequest;
 
     @Inject
     UserStore mUserStore;
@@ -84,6 +90,15 @@ public class HomeMePresenter extends BasePresenter<HomeMeView> {
                 return null;
             }
         }, Task.UI_THREAD_EXECUTOR);
+    }
+
+    private void initLogoutRequest() {
+        getView().mBtnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void updateInfo(User user) {

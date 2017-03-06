@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import samples.linhtruong.com.base.BaseActivity;
 import samples.linhtruong.com.base.BasePresenter;
 import samples.linhtruong.com.dagger2sample.app.App;
+import samples.linhtruong.com.dagger2sample.home.tabs.HomeMeView;
 import samples.linhtruong.com.dagger2sample.scope.UserScope;
 import samples.linhtruong.com.dagger2sample.component.UserComponent;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
@@ -18,7 +19,7 @@ import samples.linhtruong.com.utils.LogUtils;
 
 /**
  * Created by linhtruong on 12/2/16 - 10:53.
- * Description: this activity represents usage of tab with viewpager
+ * Description: this activity represents usage of tab with custom tab view
  */
 
 @EActivity
@@ -47,6 +48,7 @@ public class HomeTabActivity extends BaseActivity {
         mUserComponent.inject(this);
         mUserComponent.inject(mUserComponent.exposeUserInfoRequest());
         mUserComponent.inject(mUserComponent.exposeUserTransactionListRequest());
+        mUserComponent.inject(mUserComponent.exposeLogoutRequest());
 
         LogUtils.d("uid = " + mLoginSession.getUid() + " - token: " + mLoginSession.getToken());
     }
@@ -67,5 +69,14 @@ public class HomeTabActivity extends BaseActivity {
 
         mPresenter.dropView(mView);
         mView = null;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mView.getCurrentView() instanceof HomeMeView) {
+            super.onBackPressed();
+        } else {
+            mView.setSelectedTab(HomeTabView.ME_INDEX, null);
+        }
     }
 }

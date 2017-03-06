@@ -1,4 +1,4 @@
-package samples.linhtruong.com.dagger2sample.ui;
+package samples.linhtruong.com.dagger2sample.utils.base;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import samples.linhtruong.com.base.BaseActivity;
+import samples.linhtruong.com.dagger2sample.utils.ActionBar;
 
 /**
  * CLASS DESCRIPTION

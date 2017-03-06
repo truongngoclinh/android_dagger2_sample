@@ -167,11 +167,6 @@ public class HomeTabView extends BaseTabView implements IScreenView {
 
     @Override
     public void onShowView() {
-        View view = getCurrentView();
-        if (view instanceof IScreenView) {
-            ((IScreenView) view).onShowView();
-        }
-
         BasePresenter presenter = getCurrentPresenter();
         if (presenter != null) {
             presenter.onResume();
@@ -180,11 +175,6 @@ public class HomeTabView extends BaseTabView implements IScreenView {
 
     @Override
     public void onHideView() {
-        View view = getCurrentView();
-        if (view instanceof IScreenView) {
-            ((IScreenView) view).onHideView();
-        }
-
         BasePresenter presenter = getCurrentPresenter();
         if (presenter != null) {
             presenter.onPause();

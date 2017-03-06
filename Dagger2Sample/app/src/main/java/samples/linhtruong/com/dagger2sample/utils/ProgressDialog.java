@@ -1,4 +1,4 @@
-package samples.linhtruong.com.dagger2sample.ui;
+package samples.linhtruong.com.dagger2sample.utils;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -6,12 +6,9 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.view.ViewCompat;
-import android.text.TextUtils;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import samples.linhtruong.com.dagger2sample.R;
 
@@ -31,7 +28,7 @@ public class ProgressDialog extends Dialog {
     public ProgressDialog(Context context) {
         super(context, R.style.DialogTransparent);
         mUI = new Handler(Looper.getMainLooper());
-        mLoadingAnimation = AnimationUtils.loadAnimation(context, R.anim.com_garena_gamecenter_progress_anim);
+        mLoadingAnimation = AnimationUtils.loadAnimation(context, R.anim.progress_anim);
 
         setContentView(R.layout.progress_dialog);
 

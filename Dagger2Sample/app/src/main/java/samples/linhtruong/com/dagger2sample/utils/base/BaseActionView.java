@@ -1,4 +1,4 @@
-package samples.linhtruong.com.dagger2sample.ui;
+package samples.linhtruong.com.dagger2sample.utils.base;
 
 import android.content.Context;
 import android.view.View;
@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import java.lang.ref.WeakReference;
 
 import samples.linhtruong.com.base.BaseView;
+import samples.linhtruong.com.dagger2sample.utils.ActionBar;
 import samples.linhtruong.com.interactor.IScreenView;
 import samples.linhtruong.com.utils.ScreenUtils;
 

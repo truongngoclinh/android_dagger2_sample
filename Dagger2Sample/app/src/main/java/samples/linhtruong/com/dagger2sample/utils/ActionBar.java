@@ -1,4 +1,4 @@
-package samples.linhtruong.com.dagger2sample.ui;
+package samples.linhtruong.com.dagger2sample.utils;
 
 import android.content.Context;
 import android.graphics.Canvas;

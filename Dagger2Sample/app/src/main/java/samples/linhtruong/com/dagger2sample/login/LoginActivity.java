@@ -39,15 +39,14 @@ public class LoginActivity extends BaseActivity {
         setContentView(mView);
 
         mPresenter = new LoginPresenter(this);
-        mPresenter.takeView(mView);
         mLoginComponent.inject(mPresenter);
+        mPresenter.takeView(mView);
     }
 
     @Override
     public void initDependency() {
         mLoginComponent = LoginComponent.Initializer.init(App.getAppcomponent());
         mLoginComponent.inject(mLoginComponent.exposeLoginRequest());
-
     }
 
     @Override
