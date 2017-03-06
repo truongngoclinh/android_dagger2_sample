@@ -26,7 +26,7 @@ Here are answers:
 
 - **`@inject`**: to inject dependency to relevant class
   + `variable`: i.e: `@Inject App applicationContext`, inject your dependency object.
-  + `method`: it works in situation we want to pass class instance itself, the params also are provided from dependency graph. Checkout the explanation [`dagger`] (http://frogermcs.github.io/dependency-injection-with-dagger-2-the-api/)
+  + `method`: it works in situation we want to pass class instance itself, the params also are provided from dependency graph. Checkout the explanation [`dagger 2`] (http://frogermcs.github.io/dependency-injection-with-dagger-2-the-api/)
   + `constructor`: indicate that Dagger should create instance of the class, put it in depedency graph also, and if the constructor has params, they are provided from dependency graph. Checkout the explanation [`dagger 2`] (http://frogermcs.github.io/dependency-injection-with-dagger-2-the-api/)
 
 Sorry for the long explanations, so in real-world how does dagger 2 work?
@@ -39,29 +39,32 @@ In brieft description: this project provide some use-cases:
 - User can see a report list of top-up transactions
 
 Ofcourse:
-- We will check user login/logout by RESTful API ([`Retrofit`] (https://github.com/square/retrofit) + `Gson`), define by `user token`. We have another API for request transaction list. 
+- We will check user login/logout by RESTful API ([`Retrofit`] (https://github.com/square/retrofit) + `Gson`), define by `user token`. We have another API for request transaction list, request user full info.
 - We try to use same transaction list class in 2 places: in a tabview and in an activity, just try to use Dagger 2.
-- We put everything to DB ([`Realm`] (https://github.com/realm/realm-java)) to optimize performance. So I think its enough for depic denpendency injection by Dagger
-2.
+- We put everything to DB ([`Realm`] (https://github.com/realm/realm-java)) to optimize performance. 
+
+So I think its enough for depic denpendency injection by Dagger 2.
+
+Anyway
 - We apply MVP design pattern.
-- We handle continuous http request by [`Bolts`] (https://github.com/BoltsFramework/Bolts-Android)
+- We handle continuous http request by [`Bolts`] (https://github.com/BoltsFramework/Bolts-Android).
 
 ## 4. Project structure
-How does dagger 2 represents:  (**TBD** better with a graph to depic)
+How does dagger 2 represent:  (**TBD** better with a graph demo)
 
 Class declaration (**TBD**)
-- `AppModule`: provide 
-- `NetworkModule`: provide API client: send http request for login/logout, retrieve transaction list.
-- `DatabaseModule`: provide database access, sharepreferences access
-- `UserModule`: provide
+- `AppModule`: provide application context, provide database manager access, provide login session
+- `NetworkModule`: provide API client
+- `LoginModule`: provide login request
+- `UserModule`: provide some requests related to user: user info, transaction list
 - `---------------`
 - `AppComponent`: a bridge 
-- `LoginComponent`:
-- `UserComponent`:
+- `LoginComponent`: a bridge
+- `UserComponent`: a bridge
 - `---------------`
-- `@UserScope`: for user lifetime
-- `@ApplicationScope`: for entire application (singleton)
-- `@LoginScope`: for login circle
+- `@UserScope`: for user lifetime, after login successfully
+- `@ApplicationScope`: for entire application 
+- `@LoginScope`: for login circle, from login to logout
 
 ## 5. Let's start!
 
