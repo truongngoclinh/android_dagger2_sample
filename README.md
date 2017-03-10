@@ -1,4 +1,4 @@
-# Dagger 2 explanation (MVP + Dagger2 + Retrofit + Realm + Bolts)
+# Dagger 2 explanation (MVP + Dagger2 + Retrofit + Realm + Bolts + AndroidAnnotations)
 *A completion project with support actionbars, network requests, db schema and base classes.*
 ## 1. Introduction
 Presumed that the reader got the need of dagger 2 in nowaday popular android applications.
