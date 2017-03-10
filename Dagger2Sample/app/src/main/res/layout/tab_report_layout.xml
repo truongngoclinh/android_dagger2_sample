@@ -13,17 +13,4 @@
         android:gravity="center"
         android:singleLine="true"
         android:text="@string/tab_report" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Me tab" />
-
-    </LinearLayout>
 </merge>

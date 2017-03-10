@@ -7,6 +7,8 @@ import org.androidannotations.annotations.EViewGroup;
 
 import samples.linhtruong.com.dagger2sample.R;
 
+import javax.inject.Inject;
+
 /**
  * CLASS DESCRIPTION
  *
@@ -20,5 +22,6 @@ public class HomeReportView extends LinearLayout {
 
     public HomeReportView(Context context) {
         super(context);
+        setOrientation(VERTICAL);
     }
 }

@@ -86,10 +86,10 @@ public class UserTransactionListRequest extends BaseHttpRequest<UserTransactionL
             }
 
             @SerializedName("topup_amount")
-            double amount;
+            public double amount;
 
             @SerializedName("topup_branch")
-            String branch;
+            public String branch;
         }
 
     }

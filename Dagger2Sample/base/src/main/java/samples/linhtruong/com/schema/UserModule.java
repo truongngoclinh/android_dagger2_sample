@@ -10,6 +10,6 @@ import io.realm.annotations.RealmModule;
  * @organization VED
  */
 
-@RealmModule(classes = {User.class})
+@RealmModule(classes = {User.class, Transaction.class})
 public class UserModule {
 }

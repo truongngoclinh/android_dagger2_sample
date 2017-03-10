@@ -4,6 +4,8 @@ import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
+import samples.linhtruong.com.dagger2sample.home.tabs.TransactionView;
+import samples.linhtruong.com.dagger2sample.home.tabs.TransactionView_;
 import samples.linhtruong.com.dagger2sample.network.request.LogoutRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserInfoRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListRequest;
@@ -50,5 +52,13 @@ public class UserModule {
     @Provides
     LogoutRequest provideLogoutRequest() {
         return new LogoutRequest();
+    }
+
+    @UserScope
+    @Provides
+    TransactionView provideTransactionView() {
+        TransactionView view = TransactionView_.build(mContext);
+        view.init();
+        return view;
     }
 }

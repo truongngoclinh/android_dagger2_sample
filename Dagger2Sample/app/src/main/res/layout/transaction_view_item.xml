@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="2">
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/amount"
+            style="@style/RobotoB18"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_dp50"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/test"
+            android:textColor="@color/green" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/branch"
+            style="@style/RobotoL14"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_dp50"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/test"
+            android:textColor="@color/black_main" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/tab_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/tab"
+        android:background="@color/dark_grey_border" />
+</LinearLayout>
