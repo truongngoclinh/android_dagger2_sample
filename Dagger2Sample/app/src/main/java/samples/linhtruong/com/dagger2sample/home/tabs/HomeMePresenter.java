@@ -1,5 +1,6 @@
 package samples.linhtruong.com.dagger2sample.home.tabs;
 
+import android.nfc.tech.NfcV;
 import android.view.View;
 
 import com.squareup.picasso.Picasso;
@@ -11,12 +12,15 @@ import javax.inject.Inject;
 import bolts.Continuation;
 import bolts.Task;
 import samples.linhtruong.com.base.BasePresenter;
+import samples.linhtruong.com.base.BaseResponse;
 import samples.linhtruong.com.dagger2sample.home.HomeTabActivity;
 import samples.linhtruong.com.dagger2sample.home.utils.CircleTransform;
 import samples.linhtruong.com.dagger2sample.network.request.LogoutRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserInfoRequest;
 import samples.linhtruong.com.dagger2sample.storage.DbManager;
+import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 import samples.linhtruong.com.dagger2sample.storage.UserStore;
+import samples.linhtruong.com.dagger2sample.utils.Navigator;
 import samples.linhtruong.com.schema.User;
 import samples.linhtruong.com.utils.LogUtils;
 
@@ -40,6 +44,9 @@ public class HomeMePresenter extends BasePresenter<HomeMeView> {
     UserStore mUserStore;
 
     @Inject
+    LoginSession mLoginSession;
+
+    @Inject
     DbManager mDManager;
 
     private HomeTabActivity mActivity;
@@ -50,6 +57,8 @@ public class HomeMePresenter extends BasePresenter<HomeMeView> {
 
     @Override
     public void onLoad() {
+        initLogoutRequest();
+
         mUserInfoRequest.initData();
         Task.callInBackground(new Callable<UserInfoRequest.UserInfoResponse>() {
             @Override
@@ -93,10 +102,26 @@ public class HomeMePresenter extends BasePresenter<HomeMeView> {
     }
 
     private void initLogoutRequest() {
+        mLogoutRequest.initData();
         getView().mBtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Task.callInBackground(new Callable<BaseResponse>() {
+                    @Override
+                    public BaseResponse call() throws Exception {
+                        return mLogoutRequest.getResponse();
+                    }
+                }).continueWith(new Continuation<BaseResponse, Void>() {
+                    @Override
+                    public Void then(Task<BaseResponse> task) throws Exception {
+                        if (task.getResult() == null) {
+                            mLoginSession.clearSession();
+                            Navigator.navigateLoginActivity(mActivity);
+                        }
 
+                        return null;
+                    }
+                });
             }
         });
     }

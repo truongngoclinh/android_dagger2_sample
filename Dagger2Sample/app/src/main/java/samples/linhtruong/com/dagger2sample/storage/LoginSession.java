@@ -35,6 +35,12 @@ public class LoginSession extends BaseSharePreference {
         putString(KEY_USER_ACCESS_TOKEN, token);
     }
 
+    public void clearSession() {
+        putBoolean(KEY_USER_LOGIN_STATUS, false);
+        putString(KEY_USER_UID, "");
+        putString(KEY_USER_ACCESS_TOKEN, "");
+    }
+
     public boolean isLogged() {
         return getBoolean(KEY_USER_LOGIN_STATUS);
     }
