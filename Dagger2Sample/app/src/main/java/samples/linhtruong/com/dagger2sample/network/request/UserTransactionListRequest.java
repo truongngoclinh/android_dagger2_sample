@@ -1,8 +1,17 @@
 package samples.linhtruong.com.dagger2sample.network.request;
 
+import com.google.gson.annotations.SerializedName;
 import retrofit2.Call;
 import samples.linhtruong.com.base.BaseHttpRequest;
 import samples.linhtruong.com.base.BaseResponse;
+import samples.linhtruong.com.dagger2sample.network.APIConfig;
+import samples.linhtruong.com.dagger2sample.network.APIService;
+import samples.linhtruong.com.dagger2sample.storage.LoginSession;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * CLASS DESCRIPTION
@@ -14,22 +23,74 @@ import samples.linhtruong.com.base.BaseResponse;
 
 public class UserTransactionListRequest extends BaseHttpRequest<UserTransactionListRequest.UserTransactionListResponse> {
 
+    @Inject
+    APIService mService;
+
+    @Inject
+    LoginSession mLoginSession;
+
+    private Map<String, String> mData;
+
+    public UserTransactionListRequest() {
+
+    }
+
+    public void initData() {
+        mData = new HashMap<>();
+        mData.put("uid", mLoginSession.getUid());
+        mData.put("access_token", mLoginSession.getToken());
+    }
+
     @Override
     public UserTransactionListResponse getMockResponse() {
-        return null;
+        UserTransactionListResponse response = new UserTransactionListResponse();
+        response.error = APIConfig.MOCK.ERROR_NONE;
+        response.result = APIConfig.MOCK.RESULT_OK;
+        if (mLoginSession.getUid().contains("1")) {
+            response.transactions.addAll(APIConfig.MOCK_USER_1_TRANSACTIONS.transactions);
+        } else {
+            response.transactions.addAll(APIConfig.MOCK_USER_2_TRANSACTIONS.transactions);
+        }
+
+        return response;
     }
 
     @Override
     protected String getURLRequest() {
-        return null;
+        return APIConfig.BASE_URL + "me/transactions";
     }
 
     @Override
     protected Call<UserTransactionListResponse> call() {
-        return null;
+        return mService.getTransactions(mData);
     }
 
-    public class UserTransactionListResponse extends BaseResponse {
+    public static class UserTransactionListResponse extends BaseResponse {
+
+        public UserTransactionListResponse() {
+            transactions = new ArrayList<>();
+        }
+
+        @SerializedName("transactions")
+        public ArrayList<Transaction> transactions;
+
+        public void addMockTransaction(double amount, String branch) {
+            transactions.add(new Transaction(amount, branch));
+        }
+
+        public class Transaction {
+
+            public Transaction(double amount, String branch) {
+                this.amount = amount;
+                this.branch = branch;
+            }
+
+            @SerializedName("topup_amount")
+            double amount;
+
+            @SerializedName("topup_branch")
+            String branch;
+        }
 
     }
 }

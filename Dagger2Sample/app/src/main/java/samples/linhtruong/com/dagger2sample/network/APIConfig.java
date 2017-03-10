@@ -1,5 +1,7 @@
 package samples.linhtruong.com.dagger2sample.network;
 
+import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListRequest;
+
 /**
  * CLASS DESCRIPTION
  *
@@ -36,5 +38,50 @@ public class APIConfig {
         int AGE = 22;
         String GENDER = "female";
         String AVATAR_URL = "https://lh3.googleusercontent.com/-M8Lb7zQykwI/AAAAAAAAAAI/AAAAAAAANwI/KgUVVosJB3E/s120-p-rw-no/photo.jpg";
+    }
+
+    public static final UserTransactionListRequest.UserTransactionListResponse MOCK_USER_1_TRANSACTIONS = new UserTransactionListRequest.UserTransactionListResponse();
+
+    static {
+        MOCK_USER_1_TRANSACTIONS.addMockTransaction(10000, BRANCH.VIETTEL.getValue());
+        MOCK_USER_1_TRANSACTIONS.addMockTransaction(20000, BRANCH.VIETTEL.getValue());
+        MOCK_USER_1_TRANSACTIONS.addMockTransaction(100000, BRANCH.VINA.getValue());
+        MOCK_USER_1_TRANSACTIONS.addMockTransaction(10000, BRANCH.VIETTEL.getValue());
+        MOCK_USER_1_TRANSACTIONS.addMockTransaction(20000, BRANCH.MOBI.getValue());
+        MOCK_USER_1_TRANSACTIONS.addMockTransaction(500000, BRANCH.VIETTEL.getValue());
+        MOCK_USER_1_TRANSACTIONS.addMockTransaction(200000, BRANCH.VINA.getValue());
+        MOCK_USER_1_TRANSACTIONS.addMockTransaction(50000, BRANCH.MOBI.getValue());
+        MOCK_USER_1_TRANSACTIONS.addMockTransaction(30000, BRANCH.VIETTEL.getValue());
+    }
+
+    public static final UserTransactionListRequest.UserTransactionListResponse MOCK_USER_2_TRANSACTIONS = new UserTransactionListRequest.UserTransactionListResponse();
+
+    static {
+        MOCK_USER_2_TRANSACTIONS.addMockTransaction(50000, BRANCH.VINA.getValue());
+        MOCK_USER_2_TRANSACTIONS.addMockTransaction(20000, BRANCH.MOBI.getValue());
+        MOCK_USER_2_TRANSACTIONS.addMockTransaction(100000, BRANCH.VINA.getValue());
+        MOCK_USER_2_TRANSACTIONS.addMockTransaction(10000, BRANCH.VIETTEL.getValue());
+        MOCK_USER_2_TRANSACTIONS.addMockTransaction(20000, BRANCH.MOBI.getValue());
+        MOCK_USER_2_TRANSACTIONS.addMockTransaction(500000, BRANCH.VIETTEL.getValue());
+        MOCK_USER_2_TRANSACTIONS.addMockTransaction(200000, BRANCH.VINA.getValue());
+        MOCK_USER_2_TRANSACTIONS.addMockTransaction(50000, BRANCH.MOBI.getValue());
+        MOCK_USER_2_TRANSACTIONS.addMockTransaction(30000, BRANCH.VIETTEL.getValue());
+    }
+
+    public enum BRANCH {
+
+        VIETTEL("Viettel"),
+        VINA("Viettel"),
+        MOBI("Mobi");
+
+        private final String branch;
+
+        BRANCH(String branch) {
+            this.branch = branch;
+        }
+
+        public String getValue() {
+            return branch;
+        }
     }
 }

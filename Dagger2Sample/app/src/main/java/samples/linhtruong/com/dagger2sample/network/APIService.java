@@ -35,5 +35,5 @@ public interface APIService {
     Call<UserInfoRequest.UserInfoResponse> getUserInfo(@FieldMap Map<String, String> data);
 
     @GET("me/top_ups")
-    Call<UserTransactionListRequest.UserTransactionListResponse> getTopUpList(@Field("uid") String uid);
+    Call<UserTransactionListRequest.UserTransactionListResponse> getTransactions(@FieldMap Map<String, String> data);
 }
