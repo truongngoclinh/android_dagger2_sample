@@ -2,6 +2,7 @@ package samples.linhtruong.com.dagger2sample.app;
 
 import android.app.Application;
 
+import com.facebook.stetho.Stetho;
 import io.realm.Realm;
 import samples.linhtruong.com.dagger2sample.component.AppComponent;
 import samples.linhtruong.com.utils.ScreenUtils;
@@ -33,6 +34,8 @@ public class App extends Application {
     private void initUtils() {
         ScreenUtils.init(this);
         Realm.init(this);
+
+        Stetho.initializeWithDefaults(this);
     }
 
     public static AppComponent getAppcomponent() {

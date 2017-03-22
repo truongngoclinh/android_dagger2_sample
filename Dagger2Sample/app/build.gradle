@@ -43,4 +43,5 @@ dependencies {
     compile libraries.picasso
     compile libraries.bolts
     compile libraries.robotoTextView
+    compile libraries.stetho
 }

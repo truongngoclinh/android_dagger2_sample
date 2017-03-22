@@ -18,7 +18,7 @@ ext.versions = [
         rxAndroid         : '1.2.0',
         retrofit          : '2.0.2',
         okHttp            : '3.2.0',
-        realm             : '2.3.0',
+        realm             : '3.0.0',
         gson              : '2.6.2',
         materialDialog    : '0.8.5.9@aar',
         robotoTextView    : '2.5.0',
@@ -26,7 +26,8 @@ ext.versions = [
         firebaseMessaging : '9.6.0',
         glide             : '3.7.0',
         picasso           : '2.5.2',
-        bolts             : '1.1.4'
+        bolts             : '1.1.4',
+        stetho            : '1.4.1'
 ]
 
 ext.libraries = [
@@ -59,5 +60,6 @@ ext.libraries = [
         firebaseMessaging       : "com.google.firebase:firebase-messaging:$versions.firebaseMessaging",
         glide                   : "com.github.bumptech.glide:glide:$versions.glide",
         picasso                 : "com.squareup.picasso:picasso:$versions.picasso",
-        bolts                   : "com.parse.bolts:bolts-android:$versions.bolts"
+        bolts                   : "com.parse.bolts:bolts-android:$versions.bolts",
+        stetho                  : "com.facebook.stetho:stetho:$versions.stetho"
 ]

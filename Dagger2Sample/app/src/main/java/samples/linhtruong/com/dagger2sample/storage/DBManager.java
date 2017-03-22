@@ -36,7 +36,6 @@ public class DbManager {
     public UserDatabase initUserDB(String uid) {
         LogUtils.d("init DB: " + uid);
         mUserDatabase = new UserDatabase(uid);
-        mRealm = mUserDatabase.getInstance();
 
         if (mRealm == null || mUserDatabase == null) {
             LogUtils.d("something null: realm = " + mRealm + " - userDB = " + mUserDatabase);
@@ -45,34 +44,59 @@ public class DbManager {
         return mUserDatabase;
     }
 
-    public void updateUserInfo(User user) {
+    public void updateUserInfo(final User user) {
         LogUtils.d("update user: " + user.uid);
         mRealm = mUserDatabase.getInstance();
         try {
-            mRealm.beginTransaction();
-            mRealm.copyToRealmOrUpdate(user);
-            mRealm.commitTransaction();
-        } catch (RealmException e) {
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    User newUser = realm.createObject(User.class);
+                    newUser.age = user.age;
+                    newUser.uid = user.uid;
+                    newUser.gender = user.gender;
+                    newUser.avatar_url = user.avatar_url;
+                    newUser.name = user.name;
+                    if (user.transactions == null || user.transactions.size() == 0) {
+                        newUser.transactions = new RealmList<>();
+                    } else {
+                        newUser.transactions.addAll(user.transactions);
+                    }
+                }
+            });
+        } catch (Exception e) {
             LogUtils.d("update user: " + user.uid + " exception: " + e.toString());
         }
     }
 
-    public void updateTransactionInfo(ArrayList<Transaction> transactions, int userId) {
+    public void updateTransactionInfo(final ArrayList<Transaction> transactions, int userId) {
         LogUtils.d("update transaction of user: " + userId);
         mRealm = mUserDatabase.getInstance();
         try {
-            mRealm.beginTransaction();
             LogUtils.d("begin transaction");
-            mRealm.copyToRealm(transactions);
-            LogUtils.d("update transactions");
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    for (Transaction transaction : transactions) {
+                        realm.copyToRealm(transaction);
+                        LogUtils.d("update transaction: " + transaction.toString());
+                    }
+                }
+            });
 
-            User user = queryUserInfo(userId);
-            user.transactions.addAll(transactions);
-
-            mRealm.commitTransaction();
-        } catch (RealmMigrationNeededException e) {
-            LogUtils.d("exception: " + e.toString());
-        } catch (RealmException e) {
+            final User user = mRealm.copyFromRealm(queryUserInfo(userId));
+            mRealm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    if (user.transactions.size() > 0) {
+                        // TODO
+                        LogUtils.d("transactions size = " + user.transactions.size());
+                    } else {
+                        user.transactions.addAll(transactions);
+                    }
+                }
+            });
+        } catch (Exception e) {
             LogUtils.d("exception: " + e.toString());
         }
     }
