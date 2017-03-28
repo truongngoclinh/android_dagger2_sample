@@ -20,7 +20,8 @@ Here are answers:
     + If an `object` **`A`** in `module` also need to `inject some others object` itself, we need to `void inject(A a)`, so we can get object A by delcare a function in `component`: **`A getA()`**. (Should check the source code for more information)
     + If we have a dependency component and we want to expose some `object` in `module` for that component (remember that if we dont expose anything, the dependecy component cant use any objects provided in module).
     
-- **`@scope`**: is just concept for **local** `singleton`, a vivid sample is: if your application manages many users, so we can declare a `singleton` which is just existing in an `@Userscope`, so everytime we login/logout all the object provided in module will be re-created. But where is the start point and end point of `@scope`, does it define by the time we create component?
+- **`@scope`**: is just concept for **local** `singleton`, a vivid sample is: if your application manages many users, so we can declare a `singleton` which is just existing in an `@Userscope`, so everytime we login/logout all the object provided in module will be re-created. @scope is based on its @component status, so that we we call component.build(), all objects will be re-created and new @scope start.
+
 - **`@qualifier`**, **`@name`**: imagine you have 2 `Context` variables in same module, to avoid conflict (Dagger 2 cant resolve itself) we need to provide `@name` to identify them, i.e: `@name applicationContext`, `@name activityContext`. The popular usage is for mock request.
 
 - **`@retention`**: decide when the `annotation` existing policies, i.e: `runtime`, default is `class`: mean annotation avaiable in the source and class file. So why we need [`runtime retention`](http://stackoverflow.com/questions/36331169/why-scope-annotations-have-runtime-retention-in-dagger-2), I'm actually not sure :)
@@ -41,7 +42,7 @@ In brieft description: this project provide some use-cases:
 
 Ofcourse:
 - We will check user login/logout by RESTful API ([`Retrofit`](https://github.com/square/retrofit) + `Gson`), define by `user token`. We have another API for request transaction list, request user full info.
-- We try to use same transaction list class in 2 places: in a tabview and in an activity, just try to use Dagger 2.
+- We try to use same transaction list class in 2 places: in a tabview and in an activity, just try to DI by Dagger 2.
 - We put everything to DB ([`Realm`](https://github.com/realm/realm-java)) to optimize performance. 
 
 So I think its enough for depic denpendency injection by Dagger 2.
@@ -54,9 +55,9 @@ Anyway
 How does dagger 2 represent:  (**TBD** better with a graph demo)
 
 Class declaration (**TBD**)
-- `AppModule`: provide application context, provide database manager access, provide login session
-- `NetworkModule`: provide API client
-- `LoginModule`: provide login request
+- `AppModule`: provide application context, provide database manager access, provide login session.
+- `NetworkModule`: provide API client with logging interceptor.
+- `LoginModule`: provide login request.
 - `UserModule`: provide some requests related to user: user info, transaction list
 - `---------------`
 - `AppComponent`: a bridge 
@@ -65,7 +66,7 @@ Class declaration (**TBD**)
 - `---------------`
 - `@UserScope`: for user lifetime, after login successfully
 - `@ApplicationScope`: for entire application 
-- `@LoginScope`: for login circle, from login to logout
+- `@LoginScope`: just for login circle, sometimes it takes much operations here.
 
 ## 5. Let's start!
 
