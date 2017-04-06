@@ -5,16 +5,11 @@ import android.view.View;
 
 import org.androidannotations.annotations.EActivity;
 
-import javax.inject.Inject;
-
 import samples.linhtruong.com.base.BaseActivity;
 import samples.linhtruong.com.base.BasePresenter;
 import samples.linhtruong.com.dagger2sample.app.App;
-import samples.linhtruong.com.dagger2sample.component.LoginComponent;
-import samples.linhtruong.com.dagger2sample.component.UserComponent;
-import samples.linhtruong.com.dagger2sample.scope.LoginScope;
-import samples.linhtruong.com.dagger2sample.scope.UserScope;
-import samples.linhtruong.com.dagger2sample.storage.LoginSession;
+import samples.linhtruong.com.dagger2sample.di.component.LoginComponent;
+import samples.linhtruong.com.dagger2sample.di.scope.LoginScope;
 
 /**
  * CLASS DESCRIPTION
@@ -46,7 +41,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void initDependency() {
         mLoginComponent = LoginComponent.Initializer.init(App.getAppcomponent());
-        mLoginComponent.inject(mLoginComponent.exposeLoginRequest());
     }
 
     @Override

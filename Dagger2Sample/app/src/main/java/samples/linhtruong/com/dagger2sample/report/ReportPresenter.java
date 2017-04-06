@@ -1,6 +1,9 @@
 package samples.linhtruong.com.dagger2sample.report;
 
+import samples.linhtruong.com.base.BaseActivity;
 import samples.linhtruong.com.base.BasePresenter;
+import samples.linhtruong.com.dagger2sample.utils.base.BaseActionActivity;
+import samples.linhtruong.com.dagger2sample.utils.base.BaseActionPresenter;
 
 /**
  * CLASS DESCRIPTION
@@ -10,5 +13,10 @@ import samples.linhtruong.com.base.BasePresenter;
  * @organization VED
  */
 
-public class ReportPresenter extends BasePresenter<ReportView> {
+public class ReportPresenter extends BaseActionPresenter<ReportView> {
+
+    @Override
+    protected BaseActionActivity getActivity() {
+        return null;
+    }
 }

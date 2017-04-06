@@ -1,12 +1,12 @@
-package samples.linhtruong.com.dagger2sample.component;
+package samples.linhtruong.com.dagger2sample.di.component;
 
 import dagger.Component;
 import samples.linhtruong.com.dagger2sample.app.App;
 import samples.linhtruong.com.dagger2sample.login.SplashActivity;
-import samples.linhtruong.com.dagger2sample.module.AppModule;
-import samples.linhtruong.com.dagger2sample.module.NetworkModule;
+import samples.linhtruong.com.dagger2sample.di.module.AppModule;
+import samples.linhtruong.com.dagger2sample.di.module.NetworkModule;
 import samples.linhtruong.com.dagger2sample.network.APIService;
-import samples.linhtruong.com.dagger2sample.scope.ApplicationScope;
+import samples.linhtruong.com.dagger2sample.di.scope.ApplicationScope;
 import samples.linhtruong.com.dagger2sample.storage.DbManager;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 

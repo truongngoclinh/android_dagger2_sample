@@ -23,12 +23,12 @@ import samples.linhtruong.com.dagger2sample.network.APIService;
 
 public class LoginRequest extends BaseHttpRequest<LoginRequest.LoginResponse> {
 
-    @Inject
-    APIService mService;
+    public APIService mService;
 
-    private Map<String, String> mData;
+    public Map<String, String> mData;
 
-    public LoginRequest() {
+    public LoginRequest(APIService service) {
+        mService = service;
     }
 
     public void initData(String account, String password) {
@@ -47,6 +47,7 @@ public class LoginRequest extends BaseHttpRequest<LoginRequest.LoginResponse> {
         return APIConfig.BASE_URL + "me/login";
     }
 
+    @Deprecated
     @Override
     public LoginResponse getMockResponse() {
         LoginResponse mockResponse = new LoginResponse();

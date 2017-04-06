@@ -2,11 +2,12 @@ package samples.linhtruong.com.dagger2sample.home.tabs;
 
 import bolts.Continuation;
 import bolts.Task;
-import samples.linhtruong.com.base.BasePresenter;
 import samples.linhtruong.com.dagger2sample.home.HomeTabActivity;
+import samples.linhtruong.com.dagger2sample.di.MockMode;
 import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListRequest;
 import samples.linhtruong.com.dagger2sample.storage.DbManager;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
+import samples.linhtruong.com.dagger2sample.utils.base.BaseActionPresenter;
 import samples.linhtruong.com.schema.Transaction;
 import samples.linhtruong.com.utils.LogUtils;
 
@@ -23,9 +24,10 @@ import java.util.concurrent.Callable;
  * @organization VED
  */
 
-public class HomeReportPresenter extends BasePresenter<HomeReportView> {
+public class HomeReportPresenter extends BaseActionPresenter<HomeReportView> {
 
     @Inject
+    @MockMode("mock")
     UserTransactionListRequest mUserTransactionListRequest;
 
     @Inject
@@ -55,9 +57,8 @@ public class HomeReportPresenter extends BasePresenter<HomeReportView> {
             @Override
             public ArrayList<Transaction> then(Task<UserTransactionListRequest.UserTransactionListResponse> task) throws Exception {
                 ArrayList<Transaction> transactions = new ArrayList<>();
-                if (task.getResult() == null) {
-                    LogUtils.d("continue with mock response, update db");
-                    UserTransactionListRequest.UserTransactionListResponse response = mUserTransactionListRequest.getMockResponse();
+                if (!task.isFaulted()) {
+                    UserTransactionListRequest.UserTransactionListResponse response = task.getResult();
                     for (UserTransactionListRequest.UserTransactionListResponse.Transaction transaction : response.transactions) {
                         transactions.add(new Transaction(transaction.amount, transaction.branch));
                     }
@@ -84,5 +85,10 @@ public class HomeReportPresenter extends BasePresenter<HomeReportView> {
         LogUtils.d("Update transactions: " + transaction.size());
         mTransactionView.loadData(transaction);
         getView().addView(mTransactionView);
+    }
+
+    @Override
+    public HomeTabActivity getActivity() {
+        return mActivity;
     }
 }

@@ -1,10 +1,9 @@
-package samples.linhtruong.com.dagger2sample.module;
+package samples.linhtruong.com.dagger2sample.di.module;
 
 import dagger.Module;
 import dagger.Provides;
 import samples.linhtruong.com.dagger2sample.app.App;
-import samples.linhtruong.com.dagger2sample.scope.ApplicationScope;
-import samples.linhtruong.com.dagger2sample.scope.LoginScope;
+import samples.linhtruong.com.dagger2sample.di.scope.ApplicationScope;
 import samples.linhtruong.com.dagger2sample.storage.DbManager;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 

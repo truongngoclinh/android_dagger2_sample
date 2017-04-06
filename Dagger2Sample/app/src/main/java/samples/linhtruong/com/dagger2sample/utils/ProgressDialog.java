@@ -32,7 +32,7 @@ public class ProgressDialog extends Dialog {
 
         setContentView(R.layout.progress_dialog);
 
-/*        mTvMessage = (TextView) findViewById(R.id.opview_lab_title);
+      /*  mTvMessage = (TextView) findViewById(R.id.opview_lab_title);
         mTvMessage.setVisibility(View.GONE);*/
 
         mIvLoading = (ImageView) findViewById(R.id.com_garena_gamecenter_loading_image);

@@ -55,4 +55,9 @@ public abstract class BaseHttpRequest<R extends BaseResponse> {
     protected abstract String getURLRequest();
 
     protected abstract Call<R> call();
+
+    /**
+     * For gson convert
+     * */
+//    protected abstract Class<R> getClassType();
 }

@@ -1,6 +1,7 @@
 package samples.linhtruong.com.dagger2sample.home.tabs;
 
-import android.nfc.tech.NfcV;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 
 import com.squareup.picasso.Picasso;
@@ -15,12 +16,14 @@ import samples.linhtruong.com.base.BasePresenter;
 import samples.linhtruong.com.base.BaseResponse;
 import samples.linhtruong.com.dagger2sample.home.HomeTabActivity;
 import samples.linhtruong.com.dagger2sample.home.utils.CircleTransform;
+import samples.linhtruong.com.dagger2sample.di.MockMode;
 import samples.linhtruong.com.dagger2sample.network.request.LogoutRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserInfoRequest;
 import samples.linhtruong.com.dagger2sample.storage.DbManager;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 import samples.linhtruong.com.dagger2sample.storage.UserStore;
 import samples.linhtruong.com.dagger2sample.utils.Navigator;
+import samples.linhtruong.com.dagger2sample.utils.base.BaseActionPresenter;
 import samples.linhtruong.com.schema.User;
 import samples.linhtruong.com.utils.LogUtils;
 
@@ -32,12 +35,14 @@ import samples.linhtruong.com.utils.LogUtils;
  * @organization VED
  */
 
-public class HomeMePresenter extends BasePresenter<HomeMeView> {
+public class HomeMePresenter extends BaseActionPresenter<HomeMeView> {
 
     @Inject
+    @MockMode("mock")
     UserInfoRequest mUserInfoRequest;
 
     @Inject
+    @MockMode("mock")
     LogoutRequest mLogoutRequest;
 
     @Inject
@@ -69,10 +74,8 @@ public class HomeMePresenter extends BasePresenter<HomeMeView> {
             @Override
             public User then(Task<UserInfoRequest.UserInfoResponse> task) throws Exception {
                 User user = null;
-                // user mock data
-                if (task.getResult() == null) {
-                    LogUtils.d("continue with mock response, update db");
-                    UserInfoRequest.UserInfoResponse response = mUserInfoRequest.getMockResponse();
+                if (!task.isFaulted()) {
+                    UserInfoRequest.UserInfoResponse response = task.getResult();
                     user = new User(response.age, response.uid, response.gender, response.name, response.avatar_url);
 
                     // sync sharepreferences
@@ -102,28 +105,39 @@ public class HomeMePresenter extends BasePresenter<HomeMeView> {
     }
 
     private void initLogoutRequest() {
-        mLogoutRequest.initData();
         getView().mBtnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Task.callInBackground(new Callable<BaseResponse>() {
+                show();
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                     @Override
-                    public BaseResponse call() throws Exception {
-                        return mLogoutRequest.getResponse();
+                    public void run() {
+                        executeLogoutRequest();
                     }
-                }).continueWith(new Continuation<BaseResponse, Void>() {
-                    @Override
-                    public Void then(Task<BaseResponse> task) throws Exception {
-                        if (task.getResult() == null) {
-                            mLoginSession.clearSession();
-                            Navigator.navigateLoginActivity(mActivity);
-                        }
-
-                        return null;
-                    }
-                });
+                }, 2000); // just fake data loading time
             }
         });
+    }
+
+    private void executeLogoutRequest() {
+        mLogoutRequest.initData();
+        Task.callInBackground(new Callable<BaseResponse>() {
+            @Override
+            public BaseResponse call() throws Exception {
+                return mLogoutRequest.getResponse();
+            }
+        }).continueWith(new Continuation<BaseResponse, Void>() {
+            @Override
+            public Void then(Task<BaseResponse> task) throws Exception {
+                hide();
+                if (!task.isFaulted()) {
+                    mLoginSession.clearSession();
+                    Navigator.navigateLoginActivity(mActivity);
+                }
+
+                return null;
+            }
+        }, Task.UI_THREAD_EXECUTOR);
     }
 
     private void updateInfo(User user) {
@@ -133,4 +147,10 @@ public class HomeMePresenter extends BasePresenter<HomeMeView> {
             Picasso.with(mActivity).load(user.avatar_url).transform(new CircleTransform()).into(getView().mImgAvatar);
         }
     }
+
+    @Override
+    public HomeTabActivity getActivity() {
+        return mActivity;
+    }
 }
+

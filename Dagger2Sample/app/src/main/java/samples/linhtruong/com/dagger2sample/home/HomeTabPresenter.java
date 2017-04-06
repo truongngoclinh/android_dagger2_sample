@@ -1,6 +1,7 @@
 package samples.linhtruong.com.dagger2sample.home;
 
 import samples.linhtruong.com.base.BasePresenter;
+import samples.linhtruong.com.dagger2sample.utils.base.BaseActionPresenter;
 
 /**
  * CLASS DESCRIPTION
@@ -10,7 +11,7 @@ import samples.linhtruong.com.base.BasePresenter;
  * @organization VED
  */
 
-public class HomeTabPresenter  extends BasePresenter<HomeTabView> {
+public class HomeTabPresenter extends BaseActionPresenter<HomeTabView> {
 
     HomeTabActivity mActivity;
 
@@ -21,5 +22,10 @@ public class HomeTabPresenter  extends BasePresenter<HomeTabView> {
     @Override
     public void onLoad() {
         getView().setSelectedTab(HomeTabView.ME_INDEX, null);
+    }
+
+    @Override
+    public HomeTabActivity getActivity() {
+        return mActivity;
     }
 }

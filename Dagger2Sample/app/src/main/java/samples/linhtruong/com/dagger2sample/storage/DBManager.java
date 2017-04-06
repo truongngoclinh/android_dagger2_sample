@@ -51,7 +51,15 @@ public class DbManager {
             mRealm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
-                    User newUser = realm.createObject(User.class);
+                    /*Number number = realm.where(User.class).max("id");
+                    int nextId;
+                    if (number == null) {
+                        nextId = 1;
+                    } else {
+                        nextId = number.intValue() ++;
+                    }*/
+
+                    User newUser = realm.createObject(User.class, nextId);
                     newUser.age = user.age;
                     newUser.uid = user.uid;
                     newUser.gender = user.gender;

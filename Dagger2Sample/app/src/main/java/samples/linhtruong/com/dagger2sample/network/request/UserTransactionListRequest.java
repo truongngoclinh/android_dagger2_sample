@@ -23,16 +23,15 @@ import java.util.Map;
 
 public class UserTransactionListRequest extends BaseHttpRequest<UserTransactionListRequest.UserTransactionListResponse> {
 
-    @Inject
-    APIService mService;
+    public APIService mService;
 
-    @Inject
-    LoginSession mLoginSession;
+    public LoginSession mLoginSession;
 
-    private Map<String, String> mData;
+    public Map<String, String> mData;
 
-    public UserTransactionListRequest() {
-
+    public UserTransactionListRequest(APIService service, LoginSession session) {
+        mService = service;
+        mLoginSession = session;
     }
 
     public void initData() {
@@ -41,6 +40,7 @@ public class UserTransactionListRequest extends BaseHttpRequest<UserTransactionL
         mData.put("access_token", mLoginSession.getToken());
     }
 
+    @Deprecated
     @Override
     public UserTransactionListResponse getMockResponse() {
         UserTransactionListResponse response = new UserTransactionListResponse();

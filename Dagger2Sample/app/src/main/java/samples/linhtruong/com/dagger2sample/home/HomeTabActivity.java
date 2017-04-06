@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Extra;
 
 import javax.inject.Inject;
 
@@ -12,8 +11,8 @@ import samples.linhtruong.com.base.BaseActivity;
 import samples.linhtruong.com.base.BasePresenter;
 import samples.linhtruong.com.dagger2sample.app.App;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeMeView;
-import samples.linhtruong.com.dagger2sample.scope.UserScope;
-import samples.linhtruong.com.dagger2sample.component.UserComponent;
+import samples.linhtruong.com.dagger2sample.di.scope.UserScope;
+import samples.linhtruong.com.dagger2sample.di.component.UserComponent;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 import samples.linhtruong.com.utils.LogUtils;
 
@@ -46,9 +45,6 @@ public class HomeTabActivity extends BaseActivity {
     protected void initDependency() {
         mUserComponent = UserComponent.Initializer.init(App.getAppcomponent(), this);
         mUserComponent.inject(this);
-        mUserComponent.inject(mUserComponent.exposeUserInfoRequest());
-        mUserComponent.inject(mUserComponent.exposeUserTransactionListRequest());
-        mUserComponent.inject(mUserComponent.exposeLogoutRequest());
 
         LogUtils.d("uid = " + mLoginSession.getUid() + " - token: " + mLoginSession.getToken());
     }

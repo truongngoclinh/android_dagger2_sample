@@ -24,16 +24,15 @@ import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 
 public class UserInfoRequest extends BaseHttpRequest<UserInfoRequest.UserInfoResponse> {
 
-    @Inject
-    APIService mService;
+    public APIService mService;
 
-    @Inject
-    LoginSession mLoginSession;
+    public LoginSession mLoginSession;
 
-    private Map<String, String> mData;
+    public Map<String, String> mData;
 
-    public UserInfoRequest() {
-
+    public UserInfoRequest(APIService service, LoginSession session) {
+        mService = service;
+        mLoginSession = session;
     }
 
     public void initData() {
@@ -42,6 +41,7 @@ public class UserInfoRequest extends BaseHttpRequest<UserInfoRequest.UserInfoRes
         mData.put("access_token", mLoginSession.getToken());
     }
 
+    @Deprecated
     @Override
     public UserInfoResponse getMockResponse() {
         UserInfoResponse response = new UserInfoResponse();

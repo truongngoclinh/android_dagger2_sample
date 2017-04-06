@@ -1,19 +1,19 @@
-package samples.linhtruong.com.dagger2sample.scope;
+package samples.linhtruong.com.dagger2sample.di;
 
+import javax.inject.Qualifier;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-
-import javax.inject.Scope;
 
 /**
  * CLASS DESCRIPTION
  *
  * @author linhtruong
- * @date 3/4/17 - 00:56.
+ * @date 4/6/17 - 13:46.
  * @organization VED
  */
 
-@Scope
+@Qualifier
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ApplicationScope {
+public @interface MockMode {
+    String value() default "";
 }

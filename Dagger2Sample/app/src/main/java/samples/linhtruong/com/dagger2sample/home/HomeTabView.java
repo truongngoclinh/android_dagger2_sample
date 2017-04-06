@@ -12,12 +12,10 @@ import org.androidannotations.annotations.ViewsById;
 
 import java.util.List;
 
-import javax.inject.Scope;
-
 import samples.linhtruong.com.base.BaseTabView;
 import samples.linhtruong.com.base.BasePresenter;
-import samples.linhtruong.com.dagger2sample.component.UserComponent;
-import samples.linhtruong.com.dagger2sample.scope.UserScope;
+import samples.linhtruong.com.dagger2sample.di.component.UserComponent;
+import samples.linhtruong.com.dagger2sample.di.scope.UserScope;
 import samples.linhtruong.com.interactor.IScreenView;
 import samples.linhtruong.com.dagger2sample.R;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeMePresenter;

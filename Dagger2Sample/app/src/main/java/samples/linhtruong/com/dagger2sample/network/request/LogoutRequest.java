@@ -22,16 +22,15 @@ import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 
 public class LogoutRequest extends BaseHttpRequest<BaseResponse> {
 
-    @Inject
-    APIService mService;
+    public APIService mService;
 
-    @Inject
-    LoginSession mLoginSession;
+    public LoginSession mLoginSession;
 
     private Map<String, String> mData;
 
-    public LogoutRequest() {
-
+    public LogoutRequest(APIService service, LoginSession session) {
+        mService = service;
+        mLoginSession = session;
     }
 
     public void initData() {
@@ -40,6 +39,7 @@ public class LogoutRequest extends BaseHttpRequest<BaseResponse> {
         mData.put("access_token", mLoginSession.getToken());
     }
 
+    @Deprecated
     @Override
     public BaseResponse getMockResponse() {
         BaseResponse mockResponse = new BaseResponse();

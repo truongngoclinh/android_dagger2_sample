@@ -8,8 +8,11 @@ package samples.linhtruong.com.base;
  * @organization VED
  */
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 
 import samples.linhtruong.com.utils.LogUtils;
@@ -18,6 +21,18 @@ public abstract class BasePresenter<V extends View> {
 
     private boolean onLoaded;
     private V view = null;
+    private ProgressDialog mDialog;
+
+    protected abstract BaseActivity getActivity();
+
+    public void delayRequest() {
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               // just delay to see dialog :D
+            }
+        }, 1000);
+    }
 
     public void takeView(V view) {
         if (view == null) {

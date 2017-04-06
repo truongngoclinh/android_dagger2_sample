@@ -27,7 +27,8 @@ ext.versions = [
         glide             : '3.7.0',
         picasso           : '2.5.2',
         bolts             : '1.1.4',
-        stetho            : '1.4.1'
+        stetho            : '1.4.1',
+        loggingInterceptor: '3.6.0'
 ]
 
 ext.libraries = [
@@ -61,5 +62,6 @@ ext.libraries = [
         glide                   : "com.github.bumptech.glide:glide:$versions.glide",
         picasso                 : "com.squareup.picasso:picasso:$versions.picasso",
         bolts                   : "com.parse.bolts:bolts-android:$versions.bolts",
-        stetho                  : "com.facebook.stetho:stetho:$versions.stetho"
+        stetho                  : "com.facebook.stetho:stetho:$versions.stetho",
+        loggingInterceptor      : "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptor"
 ]

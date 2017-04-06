@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.facebook.stetho.Stetho;
 import io.realm.Realm;
-import samples.linhtruong.com.dagger2sample.component.AppComponent;
+import samples.linhtruong.com.dagger2sample.di.component.AppComponent;
 import samples.linhtruong.com.utils.ScreenUtils;
 
 /**
