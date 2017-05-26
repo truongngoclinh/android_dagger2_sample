@@ -22,11 +22,11 @@ Here are answers:
     
 - **`@scope`**: is just concept for **local** `singleton`. 
   + For example: If we add `@scope` to our component, then we inject an `unscope` object, it will be re-created every injection times. If we inject `@scope` marked with object, it will retain same object like singleton behavior. And everything will be re-created if the component re-created.
-  + `@Singleton` scope is misleading term because if your injection object is marked with @Singleton, it was still re-created if the component re-created, so shouldn't use `@Singleton`
+  + `@Singleton` scope is misleading term because if your injection object is marked with `@Singleton`, it was still re-created if the component re-created, so it isn't same as in Java. We shouldn't use `@Singleton`.
 
 - **`@qualifier`**, **`@name`**: imagine you have 2 `Context` variables in same module, to avoid conflict (Dagger 2 cant resolve itself) we need to provide `@name` to identify them, i.e: `@name applicationContext`, `@name activityContext`. The popular usage is for mock request.
 
-- **`@retention`**: decide when the `annotation` existing policies, i.e: `runtime`, default is `class`: mean annotation avaiable in the source and class file. So why we need [`runtime retention`](http://stackoverflow.com/questions/36331169/why-scope-annotations-have-runtime-retention-in-dagger-2), I'm actually not sure :)
+- **`@retention`**: decide when the `annotation` existing policies, i.e: `runtime`... So why we need [`runtime retention`](http://stackoverflow.com/questions/36331169/why-scope-annotations-have-runtime-retention-in-dagger-2).
 
 - **`@inject`**: to inject dependency to relevant class
   + `variable`: i.e: `@Inject App applicationContext`, inject your dependency object.
