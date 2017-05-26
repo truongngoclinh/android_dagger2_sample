@@ -20,7 +20,7 @@ Here are answers:
     + If an `object` **`A`** in `module` also need to `inject some others object` itself, we need to `void inject(A a)`, so we can get object A by delcare a function in `component`: **`A getA()`**. (Should check the source code for more information)
     + If we have a dependency component and we want to expose some `object` in `module` for that component (remember that if we dont expose anything, the dependecy component cant use any objects provided in module).
     
-- **`@scope`**: is just concept for **local** `singleton`, a vivid sample is: if your application manages many users, so we can declare a `singleton` which is just existing in an `@Userscope`, so everytime we login/logout all the object provided in module will be re-created. @scope is based on its @component status, so that we we call component.build(), all objects will be re-created and new @scope start.
+- **`@scope`**: is just concept for **local** `singleton`. For example: If we add @scope to our component, then we inject an `unscope` object, it will be re-created every injection times. If we inject `@scope` mark with object, it will retain same object like singleton behavior. And everything will be re-created if the component re-created.
 
 - **`@qualifier`**, **`@name`**: imagine you have 2 `Context` variables in same module, to avoid conflict (Dagger 2 cant resolve itself) we need to provide `@name` to identify them, i.e: `@name applicationContext`, `@name activityContext`. The popular usage is for mock request.
 
