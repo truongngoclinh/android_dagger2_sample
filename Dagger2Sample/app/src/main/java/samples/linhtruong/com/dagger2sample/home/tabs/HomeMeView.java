@@ -33,6 +33,9 @@ public class HomeMeView extends LinearLayout {
     @ViewById(R.id.btn_logout)
     RobotoButton mBtnLogout;
 
+    @ViewById(R.id.btn_open)
+    RobotoButton mBtnOpen;
+
     public HomeMeView(Context context) {
         super(context);
         setOrientation(VERTICAL);

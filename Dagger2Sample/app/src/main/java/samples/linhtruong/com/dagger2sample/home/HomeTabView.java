@@ -15,6 +15,7 @@ import java.util.List;
 import samples.linhtruong.com.base.BaseTabView;
 import samples.linhtruong.com.base.BasePresenter;
 import samples.linhtruong.com.dagger2sample.di.component.UserComponent;
+import samples.linhtruong.com.dagger2sample.di.scope.ApplicationScope;
 import samples.linhtruong.com.dagger2sample.di.scope.UserScope;
 import samples.linhtruong.com.interactor.IScreenView;
 import samples.linhtruong.com.dagger2sample.R;
@@ -24,6 +25,7 @@ import samples.linhtruong.com.dagger2sample.home.tabs.HomeMeView_;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeReportPresenter;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeReportView;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeReportView_;
+import samples.linhtruong.com.utils.LogUtils;
 
 /**
  * CLASS DESCRIPTION
@@ -38,7 +40,7 @@ public class HomeTabView extends BaseTabView implements IScreenView {
 
     private Context mContext;
 
-    @UserScope
+    @ApplicationScope
     private UserComponent mUserComponent;
 
     public HomeTabView(Context context, UserComponent userComponent) {
@@ -97,24 +99,34 @@ public class HomeTabView extends BaseTabView implements IScreenView {
         switch (currentIndex) {
             case 0:
                 if (mMePresenter == null) {
+                    LogUtils.d("[test scope] mMePresenter is NULL");
                     mMePresenter = new HomeMePresenter((HomeTabActivity) mContext);
                     mMeView = HomeMeView_.build(mContext);
+
+                    LogUtils.d("[test scope] reinject home me");
+                    mUserComponent.inject(mMePresenter);
+                    mMePresenter.takeView(mMeView);
                 }
                 to = mMePresenter;
-                mUserComponent.inject(mMePresenter);
+//                mUserComponent.inject(mMePresenter);
                 addView(mMeView, layoutParams);
-                mMePresenter.takeView(mMeView);
+//                mMePresenter.takeView(mMeView);
                 break;
 
             case 1:
                 if (mReportPresenter == null) {
+                    LogUtils.d("[test scope] mReportPresenter is NULL");
                     mReportPresenter = new HomeReportPresenter((HomeTabActivity) mContext);
                     mReportView = HomeReportView_.build(mContext);
+
+                    LogUtils.d("[test scope] reinject home report");
+                    mUserComponent.inject(mReportPresenter);
+                    mReportPresenter.takeView(mReportView);
                 }
                 to = mReportPresenter;
-                mUserComponent.inject(mReportPresenter);
+//                mUserComponent.inject(mReportPresenter);
                 addView(mReportView, layoutParams);
-                mReportPresenter.takeView(mReportView);
+//                mReportPresenter.takeView(mReportView);
                 break;
         }
 

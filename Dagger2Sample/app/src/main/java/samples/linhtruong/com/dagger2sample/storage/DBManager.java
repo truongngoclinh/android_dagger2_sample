@@ -30,6 +30,7 @@ public class DbManager {
     private Realm mRealm;
 
     public DbManager(Context context) {
+        LogUtils.d("[test scope] init DbManager()");
         mContext = context;
     }
 
@@ -51,15 +52,7 @@ public class DbManager {
             mRealm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
-                    /*Number number = realm.where(User.class).max("id");
-                    int nextId;
-                    if (number == null) {
-                        nextId = 1;
-                    } else {
-                        nextId = number.intValue() ++;
-                    }*/
-
-                    User newUser = realm.createObject(User.class, nextId);
+                    User newUser = realm.createObject(User.class);
                     newUser.age = user.age;
                     newUser.uid = user.uid;
                     newUser.gender = user.gender;

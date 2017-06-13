@@ -7,6 +7,7 @@ import samples.linhtruong.com.base.BaseResponse;
 import samples.linhtruong.com.dagger2sample.network.APIConfig;
 import samples.linhtruong.com.dagger2sample.network.APIService;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
+import samples.linhtruong.com.utils.LogUtils;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class UserTransactionListRequest extends BaseHttpRequest<UserTransactionL
     public Map<String, String> mData;
 
     public UserTransactionListRequest(APIService service, LoginSession session) {
+        LogUtils.d("[test scope] init UserTransactionListRequest");
         mService = service;
         mLoginSession = session;
     }

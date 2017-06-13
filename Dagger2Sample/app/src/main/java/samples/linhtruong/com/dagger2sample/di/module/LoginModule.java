@@ -6,6 +6,7 @@ import samples.linhtruong.com.dagger2sample.di.MockMode;
 import samples.linhtruong.com.dagger2sample.network.APIService;
 import samples.linhtruong.com.dagger2sample.network.mock.MockLoginRequest;
 import samples.linhtruong.com.dagger2sample.network.request.LoginRequest;
+import samples.linhtruong.com.utils.LogUtils;
 
 /**
  * CLASS DESCRIPTION
@@ -21,6 +22,7 @@ public class LoginModule {
     @Provides
     @MockMode("prod")
     LoginRequest provideLoginRequest(APIService service) {
+        LogUtils.d("[test scope] LoginModule: provideLoginRequest()");
         return new LoginRequest(service);
     }
 

@@ -6,6 +6,7 @@ import samples.linhtruong.com.dagger2sample.app.App;
 import samples.linhtruong.com.dagger2sample.di.scope.ApplicationScope;
 import samples.linhtruong.com.dagger2sample.storage.DbManager;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
+import samples.linhtruong.com.utils.LogUtils;
 
 /**
  * CLASS DESCRIPTION
@@ -30,9 +31,10 @@ public class AppModule {
         return mApp;
     }
 
-    @ApplicationScope
     @Provides
+    @ApplicationScope
     DbManager provideDBManager() {
+        LogUtils.d("[test scope] Appmodule: provideDBManager()");
         return new DbManager(mApp);
     }
 
@@ -41,5 +43,4 @@ public class AppModule {
     LoginSession provideLoginSession() {
         return new LoginSession(mApp);
     }
-
 }

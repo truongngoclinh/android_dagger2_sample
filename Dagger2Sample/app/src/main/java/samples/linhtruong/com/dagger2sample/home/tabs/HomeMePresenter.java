@@ -19,6 +19,7 @@ import samples.linhtruong.com.dagger2sample.home.utils.CircleTransform;
 import samples.linhtruong.com.dagger2sample.di.MockMode;
 import samples.linhtruong.com.dagger2sample.network.request.LogoutRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserInfoRequest;
+import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListRequest;
 import samples.linhtruong.com.dagger2sample.storage.DbManager;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 import samples.linhtruong.com.dagger2sample.storage.UserStore;
@@ -49,6 +50,9 @@ public class HomeMePresenter extends BaseActionPresenter<HomeMeView> {
     UserStore mUserStore;
 
     @Inject
+    UserStore mUserStore2;
+
+    @Inject
     LoginSession mLoginSession;
 
     @Inject
@@ -63,6 +67,20 @@ public class HomeMePresenter extends BaseActionPresenter<HomeMeView> {
     @Override
     public void onLoad() {
         initLogoutRequest();
+
+        // checking scope
+        getView().mBtnOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        if (mDManager == null) {
+            LogUtils.d("[test scope] HomeMe DbManager NULL!");
+        } else {
+            LogUtils.d("[test scope] HomeMe DbManager is OK!");
+        }
 
         mUserInfoRequest.initData();
         Task.callInBackground(new Callable<UserInfoRequest.UserInfoResponse>() {

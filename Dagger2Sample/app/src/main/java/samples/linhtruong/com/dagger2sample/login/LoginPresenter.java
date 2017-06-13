@@ -2,6 +2,7 @@ package samples.linhtruong.com.dagger2sample.login;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.support.design.internal.ParcelableSparseArray;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,6 +18,8 @@ import samples.linhtruong.com.dagger2sample.di.MockMode;
 import samples.linhtruong.com.dagger2sample.network.APIConfig;
 import samples.linhtruong.com.dagger2sample.network.request.LoginRequest;
 import samples.linhtruong.com.dagger2sample.di.scope.LoginScope;
+import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListRequest;
+import samples.linhtruong.com.dagger2sample.storage.DbManager;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 import samples.linhtruong.com.dagger2sample.utils.Navigator;
 import samples.linhtruong.com.dagger2sample.utils.base.BaseActionPresenter;
@@ -39,10 +42,26 @@ public class LoginPresenter extends BaseActionPresenter<LoginView> {
     @Inject
     LoginSession mLoginSession;
 
+    @Inject
+    DbManager mDbManager;
+
     private LoginActivity mActivity;
 
     @Override
     public void onLoad() {
+
+        if (mDbManager == null) {
+            LogUtils.d("[test scope] db manager is NULL");
+        } else {
+            LogUtils.d("[test scope] db manager is OK");
+        }
+
+        if (mLoginRequest == null) {
+            LogUtils.d("[test scope] login request is NULL");
+        } else {
+            LogUtils.d("[test scope] login request is OK");
+        }
+
         LogUtils.d("loaded LoginView");
         getView().mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,9 +112,8 @@ public class LoginPresenter extends BaseActionPresenter<LoginView> {
                     return null;
                 }
             }, Task.UI_THREAD_EXECUTOR);
-        } else
-
-        {
+        } else {
+            hide();
             Snackbar.make(mActivity.findViewById(android.R.id.content),
                     "Please input your info! try \"user1\" or \"user 2\"", Snackbar.LENGTH_LONG).show();
 

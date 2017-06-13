@@ -5,7 +5,11 @@ import android.app.Application;
 import com.facebook.stetho.Stetho;
 import io.realm.Realm;
 import samples.linhtruong.com.dagger2sample.di.component.AppComponent;
+import samples.linhtruong.com.dagger2sample.storage.DbManager;
+import samples.linhtruong.com.utils.LogUtils;
 import samples.linhtruong.com.utils.ScreenUtils;
+
+import javax.inject.Inject;
 
 /**
  * CLASS DESCRIPTION
@@ -19,12 +23,27 @@ public class App extends Application {
 
     private static volatile AppComponent mAppComponent;
 
+    @Inject
+    DbManager mDbManager;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
+        if (mDbManager == null) {
+            LogUtils.d("[test scope] before ... db manager is NULL");
+        } else {
+            LogUtils.d("[test scope] before ... db manager is OK");
+        }
+
         initDependency();
         initUtils();
+
+        if (mDbManager == null) {
+            LogUtils.d("[test scope] after component created db manager is NULL");
+        } else {
+            LogUtils.d("[test scope] after component created db manager is OK");
+        }
     }
 
     private void initDependency() {

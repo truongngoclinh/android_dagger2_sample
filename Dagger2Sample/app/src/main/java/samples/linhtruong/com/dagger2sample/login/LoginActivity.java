@@ -10,6 +10,9 @@ import samples.linhtruong.com.base.BasePresenter;
 import samples.linhtruong.com.dagger2sample.app.App;
 import samples.linhtruong.com.dagger2sample.di.component.LoginComponent;
 import samples.linhtruong.com.dagger2sample.di.scope.LoginScope;
+import samples.linhtruong.com.dagger2sample.storage.DbManager;
+
+import javax.inject.Inject;
 
 /**
  * CLASS DESCRIPTION

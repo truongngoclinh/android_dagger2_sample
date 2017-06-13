@@ -3,6 +3,7 @@ package samples.linhtruong.com.dagger2sample.di.component;
 import android.content.Context;
 
 import dagger.Component;
+import samples.linhtruong.com.dagger2sample.di.scope.ApplicationScope;
 import samples.linhtruong.com.dagger2sample.home.HomeTabActivity;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeMePresenter;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeReportPresenter;
@@ -11,6 +12,7 @@ import samples.linhtruong.com.dagger2sample.di.scope.UserScope;
 import samples.linhtruong.com.dagger2sample.network.request.LogoutRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserInfoRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListRequest;
+import samples.linhtruong.com.utils.LogUtils;
 
 /**
  * CLASS DESCRIPTION
@@ -29,6 +31,7 @@ public interface UserComponent {
 
     final class Initializer {
         public static UserComponent init(AppComponent appComponent, Context context) {
+            LogUtils.d("[test scope] init UserComponent");
             return DaggerUserComponent.builder().appComponent(appComponent).userModule(new UserModule(context)).build();
         }
     }

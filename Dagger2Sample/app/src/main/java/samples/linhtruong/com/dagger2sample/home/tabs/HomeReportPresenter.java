@@ -47,6 +47,13 @@ public class HomeReportPresenter extends BaseActionPresenter<HomeReportView> {
 
     @Override
     public void onLoad() {
+         // checking scope
+        if (mDbManger == null) {
+            LogUtils.d("[test scope] HomeReport DbManager NULL!");
+        } else {
+            LogUtils.d("[test scope] HomeReport DbManager is OK!");
+        }
+
         mUserTransactionListRequest.initData();
         Task.callInBackground(new Callable<UserTransactionListRequest.UserTransactionListResponse>() {
             @Override

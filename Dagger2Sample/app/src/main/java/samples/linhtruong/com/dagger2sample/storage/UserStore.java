@@ -26,6 +26,7 @@ public class UserStore extends BaseSharePreference {
 
     public UserStore(Context context) {
         super(context);
+        LogUtils.d("init UserStore()");
     }
 
     @Override

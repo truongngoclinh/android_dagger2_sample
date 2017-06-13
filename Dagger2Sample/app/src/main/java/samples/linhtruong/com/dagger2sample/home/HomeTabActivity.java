@@ -1,6 +1,9 @@
 package samples.linhtruong.com.dagger2sample.home;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import org.androidannotations.annotations.EActivity;
@@ -9,6 +12,7 @@ import javax.inject.Inject;
 
 import samples.linhtruong.com.base.BaseActivity;
 import samples.linhtruong.com.base.BasePresenter;
+import samples.linhtruong.com.dagger2sample.R;
 import samples.linhtruong.com.dagger2sample.app.App;
 import samples.linhtruong.com.dagger2sample.home.tabs.HomeMeView;
 import samples.linhtruong.com.dagger2sample.di.scope.UserScope;
@@ -24,7 +28,6 @@ import samples.linhtruong.com.utils.LogUtils;
 @EActivity
 public class HomeTabActivity extends BaseActivity {
 
-    @UserScope
     UserComponent mUserComponent;
 
     @Inject
@@ -74,5 +77,17 @@ public class HomeTabActivity extends BaseActivity {
         } else {
             mView.setSelectedTab(HomeTabView.ME_INDEX, null);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu, menu);
+        return true;
     }
 }

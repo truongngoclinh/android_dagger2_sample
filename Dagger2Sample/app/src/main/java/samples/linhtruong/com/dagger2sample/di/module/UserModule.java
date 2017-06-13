@@ -5,6 +5,8 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import samples.linhtruong.com.dagger2sample.di.MockMode;
+import samples.linhtruong.com.dagger2sample.di.scope.ApplicationScope;
+import samples.linhtruong.com.dagger2sample.di.scope.LoginScope;
 import samples.linhtruong.com.dagger2sample.home.tabs.TransactionView;
 import samples.linhtruong.com.dagger2sample.home.tabs.TransactionView_;
 import samples.linhtruong.com.dagger2sample.network.APIService;
@@ -17,6 +19,7 @@ import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListR
 import samples.linhtruong.com.dagger2sample.di.scope.UserScope;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
 import samples.linhtruong.com.dagger2sample.storage.UserStore;
+import samples.linhtruong.com.utils.LogUtils;
 
 /**
  * CLASS DESCRIPTION
@@ -38,6 +41,7 @@ public class UserModule {
     @UserScope
     @Provides
     UserStore provideUserStore() {
+        LogUtils.d("[test scope] Usermodule: provideUserStore");
         return new UserStore(mContext);
     }
 
@@ -62,6 +66,7 @@ public class UserModule {
     @Provides
     @MockMode("mock")
     UserTransactionListRequest provideMockTransactionListRequest(APIService service, LoginSession session) {
+        LogUtils.d("[test scope] Usermodule: provideUserTransactionListRequest");
         return new MockUserTransactionListRequest(service, session);
     }
 
@@ -77,7 +82,6 @@ public class UserModule {
         return new MockLogoutRequest(service, session);
     }
 
-    @UserScope
     @Provides
     TransactionView provideTransactionView() {
         TransactionView view = TransactionView_.build(mContext);

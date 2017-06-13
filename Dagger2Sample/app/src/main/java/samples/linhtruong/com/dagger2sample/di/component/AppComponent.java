@@ -9,6 +9,7 @@ import samples.linhtruong.com.dagger2sample.network.APIService;
 import samples.linhtruong.com.dagger2sample.di.scope.ApplicationScope;
 import samples.linhtruong.com.dagger2sample.storage.DbManager;
 import samples.linhtruong.com.dagger2sample.storage.LoginSession;
+import samples.linhtruong.com.utils.LogUtils;
 
 /**
  * CLASS DESCRIPTION
@@ -24,6 +25,7 @@ public interface AppComponent {
 
     final class Initialiazer {
         public static AppComponent init(App app) {
+            LogUtils.d("[test scope] init AppComponent");
             return DaggerAppComponent.builder().appModule(new AppModule(app)).build();
         }
     }
