@@ -1,13 +1,11 @@
 package samples.linhtruong.com.dagger2sample.di.component;
 
 import dagger.Component;
-import samples.linhtruong.com.dagger2sample.di.scope.UserScope;
+import samples.linhtruong.com.dagger2sample.di.module.LoginModule;
 import samples.linhtruong.com.dagger2sample.login.LoginActivity;
 import samples.linhtruong.com.dagger2sample.login.LoginPresenter;
-import samples.linhtruong.com.dagger2sample.di.module.LoginModule;
 import samples.linhtruong.com.dagger2sample.network.request.LoginRequest;
 import samples.linhtruong.com.dagger2sample.di.scope.LoginScope;
-import samples.linhtruong.com.utils.LogUtils;
 
 /**
  * CLASS DESCRIPTION
@@ -25,7 +23,6 @@ public interface LoginComponent {
 
     final class Initializer {
         public static LoginComponent init(AppComponent appComponent) {
-            LogUtils.d("[test scope] init LoginComponent");
             return DaggerLoginComponent.builder().appComponent(appComponent).build();
         }
     }

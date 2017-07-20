@@ -29,21 +29,8 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        if (mDbManager == null) {
-            LogUtils.d("[test scope] before ... db manager is NULL");
-        } else {
-            LogUtils.d("[test scope] before ... db manager is OK");
-        }
-
         initDependency();
         initUtils();
-
-        if (mDbManager == null) {
-            LogUtils.d("[test scope] after component created db manager is NULL");
-        } else {
-            LogUtils.d("[test scope] after component created db manager is OK");
-        }
     }
 
     private void initDependency() {

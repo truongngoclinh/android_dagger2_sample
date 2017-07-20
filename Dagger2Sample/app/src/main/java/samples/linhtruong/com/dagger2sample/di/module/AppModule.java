@@ -34,7 +34,6 @@ public class AppModule {
     @Provides
     @ApplicationScope
     DbManager provideDBManager() {
-        LogUtils.d("[test scope] Appmodule: provideDBManager()");
         return new DbManager(mApp);
     }
 

@@ -25,7 +25,6 @@ public interface AppComponent {
 
     final class Initialiazer {
         public static AppComponent init(App app) {
-            LogUtils.d("[test scope] init AppComponent");
             return DaggerAppComponent.builder().appModule(new AppModule(app)).build();
         }
     }

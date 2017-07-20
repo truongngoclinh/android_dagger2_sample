@@ -1,4 +1,4 @@
-package samples.linhtruong.com.dagger2sample.network.mock;
+package samples.linhtruong.com.dagger2sample.di.module.mock;
 
 import samples.linhtruong.com.dagger2sample.network.APIConfig;
 import samples.linhtruong.com.dagger2sample.network.APIService;

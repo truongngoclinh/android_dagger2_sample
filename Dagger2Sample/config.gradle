@@ -28,7 +28,9 @@ ext.versions = [
         picasso           : '2.5.2',
         bolts             : '1.1.4',
         stetho            : '1.4.1',
-        loggingInterceptor: '3.6.0'
+        loggingInterceptor: '3.6.0',
+        mockito           : '1.10.19',
+        junit             : '4.12'
 ]
 
 ext.libraries = [
@@ -63,5 +65,7 @@ ext.libraries = [
         picasso                 : "com.squareup.picasso:picasso:$versions.picasso",
         bolts                   : "com.parse.bolts:bolts-android:$versions.bolts",
         stetho                  : "com.facebook.stetho:stetho:$versions.stetho",
-        loggingInterceptor      : "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptor"
+        loggingInterceptor      : "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptor",
+        mockito                 : "org.mockito:mockito-core:$versions.mockito",
+        junit                   : "junit:junit:$versions.junit"
 ]

@@ -10,9 +10,9 @@ import samples.linhtruong.com.dagger2sample.di.scope.LoginScope;
 import samples.linhtruong.com.dagger2sample.home.tabs.TransactionView;
 import samples.linhtruong.com.dagger2sample.home.tabs.TransactionView_;
 import samples.linhtruong.com.dagger2sample.network.APIService;
-import samples.linhtruong.com.dagger2sample.network.mock.MockLogoutRequest;
-import samples.linhtruong.com.dagger2sample.network.mock.MockUserInfoRequest;
-import samples.linhtruong.com.dagger2sample.network.mock.MockUserTransactionListRequest;
+import samples.linhtruong.com.dagger2sample.di.module.mock.MockLogoutRequest;
+import samples.linhtruong.com.dagger2sample.di.module.mock.MockUserInfoRequest;
+import samples.linhtruong.com.dagger2sample.di.module.mock.MockUserTransactionListRequest;
 import samples.linhtruong.com.dagger2sample.network.request.LogoutRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserInfoRequest;
 import samples.linhtruong.com.dagger2sample.network.request.UserTransactionListRequest;
@@ -41,7 +41,6 @@ public class UserModule {
     @UserScope
     @Provides
     UserStore provideUserStore() {
-        LogUtils.d("[test scope] Usermodule: provideUserStore");
         return new UserStore(mContext);
     }
 
@@ -52,34 +51,15 @@ public class UserModule {
     }
 
     @Provides
-    @MockMode("mock")
-    UserInfoRequest provideMockUserRequest(APIService service, LoginSession session) {
-        return new MockUserInfoRequest(service, session);
-    }
-
-    @Provides
     @MockMode("prod")
     UserTransactionListRequest provideTransactionListRequest(APIService service, LoginSession session) {
         return new UserTransactionListRequest(service, session);
     }
 
     @Provides
-    @MockMode("mock")
-    UserTransactionListRequest provideMockTransactionListRequest(APIService service, LoginSession session) {
-        LogUtils.d("[test scope] Usermodule: provideUserTransactionListRequest");
-        return new MockUserTransactionListRequest(service, session);
-    }
-
-    @Provides
     @MockMode("prod")
     LogoutRequest provideLogoutRequest(APIService service, LoginSession session) {
         return new LogoutRequest(service, session);
-    }
-
-    @Provides
-    @MockMode("mock")
-    LogoutRequest provideMockLogoutRequest(APIService service, LoginSession session) {
-        return new MockLogoutRequest(service, session);
     }
 
     @Provides

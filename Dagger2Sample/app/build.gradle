@@ -16,6 +16,10 @@ android {
     }
 
     buildTypes {
+        debug {
+
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -26,6 +30,10 @@ android {
         // added for instant-run optimization
         maxProcessCount 4
         javaMaxHeapSize "8g"
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
     }
 
     sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/menu'] } }
@@ -45,4 +53,7 @@ dependencies {
     compile libraries.robotoTextView
     compile libraries.stetho
     compile libraries.loggingInterceptor
+
+    testCompile libraries.junit
+    testCompile libraries.mockito
 }

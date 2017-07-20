@@ -35,6 +35,8 @@ import samples.linhtruong.com.utils.LogUtils;
 
 public class LoginPresenter extends BaseActionPresenter<LoginView> {
 
+    public static final int FAKE_LOADING_TIME = 2000;
+
     @Inject
     @MockMode("mock")
     LoginRequest mLoginRequest;
@@ -49,20 +51,6 @@ public class LoginPresenter extends BaseActionPresenter<LoginView> {
 
     @Override
     public void onLoad() {
-
-        if (mDbManager == null) {
-            LogUtils.d("[test scope] db manager is NULL");
-        } else {
-            LogUtils.d("[test scope] db manager is OK");
-        }
-
-        if (mLoginRequest == null) {
-            LogUtils.d("[test scope] login request is NULL");
-        } else {
-            LogUtils.d("[test scope] login request is OK");
-        }
-
-        LogUtils.d("loaded LoginView");
         getView().mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +60,7 @@ public class LoginPresenter extends BaseActionPresenter<LoginView> {
                     public void run() {
                         executeLoginRequest();
                     }
-                }, 2000); // just fake data loading time
+                }, FAKE_LOADING_TIME); // just fake data loading time
             }
         });
     }
