@@ -37,7 +37,6 @@ public class ScreenUtils {
     }
 
     public static int getPx(int dp) {
-       return (int) (dp * DENSITY + 0.5);
+        return (int) (dp * DENSITY + 0.5);
     }
-
 }

@@ -13,6 +13,9 @@ android {
         versionName versions.name
 
         multiDexEnabled false
+
+        // use JUnit 4 test classes
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -32,9 +35,9 @@ android {
         javaMaxHeapSize "8g"
     }
 
-    testOptions {
+    /*testOptions {
         unitTests.returnDefaultValues = true
-    }
+    }*/
 
     sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/menu'] } }
 }
@@ -54,6 +57,21 @@ dependencies {
     compile libraries.stetho
     compile libraries.loggingInterceptor
 
+    // test
     testCompile libraries.junit
     testCompile libraries.mockito
+
+    androidTestCompile libraries.junit
+    androidTestCompile libraries.mockito
+    androidTestCompile libraries.dexmaker
+    androidTestCompile libraries.dexmakerMockito
+
+    androidTestCompile libraries.testRunner
+    androidTestCompile libraries.testRules
+    androidTestCompile libraries.hamcrest
+    androidTestCompile(libraries.expresso, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile libraries.uiautomator
+    androidTestCompile libraries.supportAnnotations // resolve conflict
 }

@@ -74,7 +74,7 @@ public class LoginPresenter extends BaseActionPresenter<LoginView> {
                 && !TextUtils.isEmpty(getView().mEdtPassword.getText().toString()));
     }
 
-    private void executeLoginRequest() {
+    public void executeLoginRequest() {
         if (isInputValid()) {
             mLoginRequest.initData(getView().mEdtAccount.getText().toString(),
                     getView().mEdtPassword.getText().toString());

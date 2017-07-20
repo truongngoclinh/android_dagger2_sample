@@ -30,7 +30,6 @@ public class DbManager {
     private Realm mRealm;
 
     public DbManager(Context context) {
-        LogUtils.d("[test scope] init DbManager()");
         mContext = context;
     }
 
