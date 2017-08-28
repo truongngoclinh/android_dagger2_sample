@@ -1,7 +1,7 @@
 # Dagger 2 explanation (MVP + Dagger2 + Retrofit + Realm + Bolts + AndroidAnnotations)
 *A completion project with support actionbars, network requests, db schema and base classes.*
 ## 1. Introduction
-Presumed that the reader got the need of dagger 2 in nowaday popular android applications.
+Presuming that the reader got the need of dagger 2 in nowaday popular android applications.
 In this sample, I want to figure out dagger 2 usage, I will try to describe dagger things in easiest understanding way included image and snip code. In specific way, this project need to clarify:
 
 - what is `module`?
