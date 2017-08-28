@@ -11,7 +11,7 @@ In this sample, I want to figure out dagger 2 usage, I will try to describe dagg
 - More in [`google guide`](https://google.github.io/dagger/users-guide.html)
 
 ## 2. Explanation
-Here are answers:
+Here are the answers:
 - **`module`** is where we provide `object` (what we call `dependency`, something like `new Object` we usually pass through constructor parameter), normally module contains many singleton. Some how, you can see `module` as a **scope** `singleton` container.
 
 - **`component`** is exactly a **bridge** (an java `interface`), a **bridge** between those objects provided in `module` with where you need to use them such as: Activity, Fragment, somewhere...
